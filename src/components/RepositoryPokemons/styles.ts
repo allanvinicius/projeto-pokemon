@@ -23,6 +23,8 @@ export const AreaPokemon = styled.div`
 
     li {
       button {
+        width: 28rem;
+        height: 30.4rem;
         padding: 1.3rem 2.9rem 2.4rem 2.8rem;
         background-color: #ffffff;
         box-shadow: 0px 10px 51px -5px rgba(183, 189, 193, 0.3);
