@@ -6,7 +6,6 @@ import icone from "../../../public/assets/icone-pokeball.svg";
 
 interface PokemonProps {
   id: number;
-
   name: string;
   sprites: {
     other: {
@@ -15,27 +14,32 @@ interface PokemonProps {
       }
     }
 
-  }
+  };
+  types: [{
+    name: string;
+  }];
 }
 
 export function RepositoryPokemons() {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-  const [pokemonPerPage] = useState(9);
+  const [pokemonPerPage, setPokemonPerPage] = useState();
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
+    const resultado: any = [];
     api.get("/pokemon").then((response) => setCount(response.data.count));
 
     api.get('/pokemon').then(response => {
-      const resultado: any = [];
-
-      response.data.results.map((item: any) => 
+      response.data.results.map((item: any) =>
         api.get(item.url).then((resp) => {
           resultado.push(resp.data);
-        }));
+        })
+      );
 
-      setPokemons(resultado);
+      setTimeout(() => {
+        setPokemons(resultado);
+      }, 1000);
     });
   }, []);
 
@@ -74,23 +78,23 @@ export function RepositoryPokemons() {
       </div>
 
       <ul className="grid-pokemon">
-        {pokemons && pokemons.map((item, index) => (
-          <li key={index}>
+        {pokemons.map((item) => (
+          <li key={item.id}>
             <button>
               <div className="image">
                 {item.sprites.other.dream_world.front_default && (
                   <Image
                     src={item.sprites.other.dream_world.front_default}
                     alt="image"
-                    width={140}
-                    height={140}
+                    width={110}
+                    height={110}
                   />
                 )}
               </div>
 
               <div className="desc">
                 <div className="left-desc">
-                  <span>#00{item.id}</span>
+                  <span>{item.id < 10 ? "#00" + item.id : item.id < 100 ? "#0" + item.id : item.id}</span>
                   <strong>
                     {item.name
                       ? item.name.charAt(0).toUpperCase() +
@@ -99,12 +103,20 @@ export function RepositoryPokemons() {
                   </strong>
                 </div>
 
-                <div className="icon"></div>
+                <div className="icon">
+                  {/* {item.types.map(type => (
+                     <Image src={`/assets/${type.name.concat(".svg")}`}/>
+                  ))} */}
+                </div>
               </div>
             </button>
           </li>
         ))}
       </ul>
+
+      <button className="load">
+        Load more Pokémons
+      </button>
     </AreaPokemon>
   );
 }

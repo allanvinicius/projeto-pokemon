@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const AreaPokemon = styled.div`
   .top {
@@ -23,12 +23,27 @@ export const AreaPokemon = styled.div`
 
     li {
       button {
-        width: 28rem;
-        height: 30.4rem;
+        width: 100%;
+        max-width: 100%;
         padding: 1.3rem 2.9rem 2.4rem 2.8rem;
-        background-color: #ffffff;
         box-shadow: 0px 10px 51px -5px rgba(183, 189, 193, 0.3);
+        background-color: #ffffff;
         border-radius: 12px;
+        transition: all .3s ease;
+
+        &:hover {
+          box-shadow: 0px 12px 40px -5px rgba(90,96,100,0.3);
+          bottom: 2px;
+        }
+
+        .image {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          width: 20rem;
+          height: 20rem;
+        }
 
         .desc {
           display: flex;
@@ -63,4 +78,45 @@ export const AreaPokemon = styled.div`
       }
     }
   }
+
+  .load {
+    width: 100%;
+    max-width: 19.6rem;
+    height: 4.5rem;
+    background: rgba(63, 93, 179, 0.1);
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    letter-spacing: -0.01em;
+    color: #3F5DB3;
+    margin: 0 auto;
+    margin-top: 6.8rem;
+    transition: all .3s ease;
+
+    &:hover {
+      background-color: #3F5DB3;
+      color: #FFFFFF;
+    }
+  }
+
+
+/* @keyframes fade {
+    0 % {
+      opacity: 0;
+    transform: translateY(20px);
+  }
+  100 % {
+    opacity: 1;
+  transform: translateY(0px);
+  }
+} */
 `;
+

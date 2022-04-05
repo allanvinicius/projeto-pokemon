@@ -16,7 +16,7 @@ export function RepositoryTypes() {
 
   return (
     <RepositoryList>
-      {types.map((type) => (
+      {types && types.map((type) => (
         <li key={type.name}>
           <button>
             <div className="icone">
