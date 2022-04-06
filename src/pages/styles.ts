@@ -192,7 +192,7 @@ export const SectionPokemons = styled.section`
   .left {
     padding-top: 7rem;
     width: 100%;
-    max-width: 23.9rem;
+    max-width: 25.9rem;
     padding-right: 14.6rem;
     border-right: 1px solid #EFF3F6;
   }

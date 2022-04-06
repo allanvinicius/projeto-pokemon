@@ -13,18 +13,18 @@ interface PokemonProps {
         front_default: string;
       }
     }
-
   };
   types: [{
-    name: string;
+    type: {
+      name: string;
+    }
   }];
 }
 
 export function RepositoryPokemons() {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-  const [pokemonPerPage, setPokemonPerPage] = useState();
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(9);
 
   useEffect(() => {
     const resultado: any = [];
@@ -43,32 +43,9 @@ export function RepositoryPokemons() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   api
-  //     .get(`/pokemon?offset=${currentPage}&limit=${pokemonPerPage}`)
-  //     .then((response) => setPokemons(response.data.results));
-  // }, [currentPage, pokemonPerPage]);
-
-  // useEffect(() => {
-  //  api.get('/pokemon').then((response => setPokemons(response.data.results)));
-  // },[]);
-
-  //   api.get(`/pokemon/bulbasaur`).then((response) => {
-  //     const { id, name, sprites } = response.data;
-
-  //     setPokemons([
-  //       {
-  //         id,
-  //         name,
-  //         image: sprites.other.dream_world.front_default,
-  //       },
-  //     ]);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   api.get("/type").then((response) => setTypes(response.data.results));
-  // }, []);
+  function handleNext() {
+   
+  }
 
   return (
     <AreaPokemon>
@@ -80,7 +57,7 @@ export function RepositoryPokemons() {
       <ul className="grid-pokemon">
         {pokemons.map((item) => (
           <li key={item.id}>
-            <button>
+            <button className={`btn-pokemon ${item.types[0].type.name}`}>
               <div className="image">
                 {item.sprites.other.dream_world.front_default && (
                   <Image
@@ -104,9 +81,11 @@ export function RepositoryPokemons() {
                 </div>
 
                 <div className="icon">
-                  {/* {item.types.map(type => (
-                     <Image src={`/assets/${type.name.concat(".svg")}`}/>
-                  ))} */}
+                  <Image src={`/assets/${item.types[0].type.name}`.concat(".svg")}
+                    width={16}
+                    height={16}
+                    alt="icone"
+                  />
                 </div>
               </div>
             </button>
@@ -114,7 +93,7 @@ export function RepositoryPokemons() {
         ))}
       </ul>
 
-      <button className="load">
+      <button onClick={handleNext} className="load">
         Load more Pokémons
       </button>
     </AreaPokemon>
