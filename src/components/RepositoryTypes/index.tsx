@@ -6,11 +6,13 @@ import iconeAll from "../../../public/assets/icone-all.svg";
 
 interface TypesProps {
   name: string;
-  pokemon: [{
-    pokemon: {
-      name: string;
+  pokemon: [
+    {
+      pokemon: {
+        name: string;
+      };
     }
-  }]
+  ];
 }
 
 export function RepositoryTypes() {
@@ -18,13 +20,16 @@ export function RepositoryTypes() {
 
   useEffect(() => {
     const resultado: any = [];
-    api.get("/type").then((response => {
+    api.get("/type").then((response) => {
       response.data.results.map((item: any) =>
         api.get(item.url).then((resp) => {
-          resultado.push(resp.data)
+          if (resp.data.name === "shadow") {
+            resultado.pop(resp.data);
+          }
+          resultado.push(resp.data);
         })
-      )
-    }));
+      );
+    });
 
     setTimeout(() => {
       setTypes(resultado);
@@ -32,12 +37,20 @@ export function RepositoryTypes() {
   }, []);
 
   function handleTypes() {
-    types.map(type => console.log(type.pokemon))
+    const array: any = [];
+
+    types.map(type => {
+      for (let i = 0; i < type.pokemon.length; i++) {
+        array.push(type.pokemon[i].pokemon)
+      }
+    })
+
+    console.log(array);
   }
 
   return (
     <RepositoryList>
-      <button className="all">
+      <button onClick={handleTypes} className="all">
         <div className="icone">
           <Image src={iconeAll} alt="icone" />
         </div>
@@ -46,24 +59,25 @@ export function RepositoryTypes() {
       </button>
 
       <ul>
-        {types && types.map((type) => (
-          <li key={type.name}>
-            <button className={`btn-type ${type.name}`} onClick={handleTypes}>
-              <div className="icone">
-                <Image
-                  src={`/assets/${type.name.concat(".svg")}`}
-                  alt={type.name}
-                  width={15}
-                  height={15}
-                />
-              </div>
+        {types &&
+          types.map((type) => (
+            <li key={type.name}>
+              <button className={`btn-type ${type.name}`} onClick={handleTypes}>
+                <div className="icone">
+                  <Image
+                    src={`/assets/${type.name.concat(".svg")}`}
+                    alt={type.name}
+                    width={15}
+                    height={15}
+                  />
+                </div>
 
-              <span>
-                {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
-              </span>
-            </button>
-          </li>
-        ))}
+                <span>
+                  {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                </span>
+              </button>
+            </li>
+          ))}
       </ul>
     </RepositoryList>
   );
