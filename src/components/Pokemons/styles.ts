@@ -1,6 +1,70 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+
+export const RepositoryList = styled.div`
+  border-right: 1px solid #EFF3F6;
+  width: 100%;
+  max-width: 25.9rem;
+  padding-top: 7rem;
+
+  .all {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4rem;
+
+    .icone {
+      margin-right: 2.5rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 2.2rem;
+      color: #3E75C3;
+    }
+  }
+  
+  ul {
+    li {
+      margin-bottom: 4rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .btn-type {
+        display: flex;
+        align-items: center;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: all 0.3s ease;
+
+        &:hover {
+          filter: grayscale(0);
+          opacity: 1;
+        }
+
+        .icone {
+          margin-right: 2.5rem;
+          width: 2rem;
+          height: 2rem;
+        }
+
+        span {
+          font-weight: 500;
+          font-size: 1.5rem;
+          line-height: 2.2rem;
+          color: #acb9c1;
+        }
+      }
+    }
+  }
+`;
 
 export const AreaPokemon = styled.div`
+  padding-top: 7rem;
+
   .top {
     display: flex;
     align-items: center;
@@ -262,7 +326,6 @@ export const AreaPokemon = styled.div`
     }
   }
 
-
 /* @keyframes fade {
     0 % {
       opacity: 0;
@@ -274,4 +337,5 @@ export const AreaPokemon = styled.div`
   }
 } */
 `;
+
 

@@ -16,8 +16,8 @@ import luzes from "../../public/assets/luzes.svg";
 import arrow from "../../public/assets/arrow-down.svg";
 
 import { Search } from "../components/Search";
-import { RepositoryTypes } from "../components/RepositoryTypes";
-import { RepositoryPokemons } from "../components/RepositoryPokemons";
+import React from "react";
+import { Pokemons } from "../components/Pokemons";
 
 
 export default function Home() {
@@ -137,13 +137,7 @@ export default function Home() {
 
       <SectionPokemons>
         <div className="container">
-          <div className="left">
-            <RepositoryTypes />
-          </div>
-
-          <div className="right">
-            <RepositoryPokemons />
-          </div>
+          <Pokemons />
         </div>
       </SectionPokemons>
     </>

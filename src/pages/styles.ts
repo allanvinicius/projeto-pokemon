@@ -187,20 +187,6 @@ export const SectionPokemons = styled.section`
   .container {
     display: flex;
     align-items: flex-start;
-  }
-
-  .left {
-    padding-top: 7rem;
-    width: 100%;
-    max-width: 25.9rem;
-    padding-right: 14.6rem;
-    border-right: 1px solid #EFF3F6;
-  }
-
-  .right {
-    padding-top: 7rem;
-    padding-left: 7.5rem;
-    width: 100%;
-    max-width: 90.4rem;
+    justify-content: space-between;
   }
 `;
