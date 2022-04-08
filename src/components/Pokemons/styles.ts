@@ -43,6 +43,114 @@ export const RepositoryList = styled.div`
         &:hover {
           filter: grayscale(0);
           opacity: 1;
+
+          &.normal {
+            span {
+              color: #A0A29F;
+            }
+          }
+
+          &.fighting {
+            span {
+              color: #C44D61;
+            }
+          }
+
+          &.flying {
+            span {
+              color: #A6BBE8;
+            }
+          }
+
+          &.poison {
+            span {
+              color: #AC6ACA;
+            }
+          }
+
+          &.ground {
+            span {
+              color: #CE8056;
+            }
+          }
+
+          &.rock {
+            span {
+              color: #8BCEC1;
+            }
+          }
+
+          &.bug {
+            span {
+              color: #9BBA48;
+            }
+          }
+
+          &.ghost {
+            span {
+              color: #616EB7;
+            }
+          }
+
+          &.steel {
+            span {
+              color: #6594A1;
+            }
+          }
+
+          &.fire {
+            span {
+              color: #F66D6D;
+            }
+          }
+
+          &.water {
+            span {
+              color: #88A3D4;
+            }
+          }
+
+          &.grass {
+            span {
+              color: #73B861;
+            }
+          }
+
+          &.electric {
+            span {
+              color: #EED967;
+            }
+          }
+
+          &.psychic {
+            span {
+              color: #EB8B85;
+            }
+          }
+
+          &.ice {
+            span {
+              color: #8BCEC1;
+            }
+          }
+
+          &.dragon {
+            span {
+              color: #2C6AC1;
+            }
+          }
+
+          &.dark {
+            span {
+              color: #595761;
+            }
+          }
+
+          &.fairy {
+            span {
+              color: #E296E1;
+            }
+          }
         }
 
         .icone {
@@ -52,10 +160,11 @@ export const RepositoryList = styled.div`
         }
 
         span {
-          font-weight: 500;
+          font-weight: 600;
           font-size: 1.5rem;
           line-height: 2.2rem;
           color: #acb9c1;
+          transition: all .3s ease;
         }
       }
     }
