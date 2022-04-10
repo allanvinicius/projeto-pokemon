@@ -18,7 +18,7 @@ export const RepositoryList = styled.div`
     }
 
     span {
-      font-weight: 500;
+      font-weight: 600;
       font-size: 15px;
       line-height: 2.2rem;
       color: #3E75C3;

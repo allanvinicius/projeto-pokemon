@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const SectionSearch = styled.section`
+  /* background: linear-gradient(
+    284.15deg,
+    #eff3f6 15.54%,
+    rgba(239, 243, 246, 0) 86.34%
+  ); */
   padding-top: 11.9rem;
   padding-bottom: 9.1rem;
   margin-top: -28.8rem;
@@ -45,7 +50,7 @@ export const SectionSearch = styled.section`
       color: #a0afba;
 
       &::placeholder {
-        color: #A0AFBA;
+        color: #a0afba;
       }
     }
 
