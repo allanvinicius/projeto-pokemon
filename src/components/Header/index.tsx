@@ -8,7 +8,7 @@ export function Header() {
            <div className="container">
                <Image src={logo} title="logo" alt="logo"/>
 
-               <span>Case Study -> Code<strong>Boost</strong></span>
+               <span>Case Study -&gt; Code<strong>Boost</strong></span>
            </div>
        </SectionHeader>
     );

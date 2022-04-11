@@ -32,11 +32,6 @@ img {
     max-width: 100%;
 }
 
-html,
-body {
-    overflow-x: hidden;
-}
-
 input,
 button,
 textarea {

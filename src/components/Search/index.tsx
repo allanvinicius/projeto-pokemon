@@ -18,7 +18,7 @@ export function Search() {
 
   function handleSearch() {
     api.get(`/pokemon/${string}`).then((response) => {
-       setSearch(response.data)
+       console.log(response.data)
     });
   }
 

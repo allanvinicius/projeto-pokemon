@@ -19,7 +19,6 @@ import { Search } from "../components/Search";
 import React from "react";
 import { Pokemons } from "../components/Pokemons";
 
-
 export default function Home() {
   return (
     <>

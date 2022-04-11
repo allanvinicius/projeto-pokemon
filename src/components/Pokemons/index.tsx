@@ -23,6 +23,14 @@ interface PokemonProps {
       };
     };
   };
+  stats: [
+    {
+      base_stat: number;
+      stat: {
+        name: string;
+      }
+    }
+  ];
   height: number;
   weight: number;
   types: [
@@ -93,6 +101,8 @@ export function Pokemons() {
 
     setCount(response.data.count);
 
+    setCurrentPage(currentPage + 9)
+
     setPokemons(resultado);
   }
 
@@ -101,7 +111,7 @@ export function Pokemons() {
 
     const response = await api.get(`pokemon?offset=0&limit=${currentPage}`);
 
-    const resultado = await Promise.all(
+    const resultado: any = await Promise.all(
       response.data.results.map((item: any) => api.get(item.url))
     );
 
@@ -113,10 +123,14 @@ export function Pokemons() {
 
     setLoadmore(resultado);
 
-   setPokemons(listPokemons);
+    setPokemons(listPokemons);
   }
 
-  function openModal() {
+  function handleOpenModal() {
+    setModal(true);
+  }
+
+  function handleCloseModal() {
     setModal(false);
   }
 
@@ -125,7 +139,7 @@ export function Pokemons() {
 
     // Requisição para listar os pokémons
     const resultadoPokemon: any = [];
-    api.get("/pokemon").then((response) => {
+    api.get(`pokemon?limit=${currentPage}&offset=0`).then((response) => {
       response.data.results.map((item: any) =>
         api.get(item.url).then((resp) => {
           resultadoPokemon.push(resp.data);
@@ -133,6 +147,7 @@ export function Pokemons() {
       );
 
       setTimeout(() => {
+        setCurrentPage(currentPage + 9);
         setPokemons(resultadoPokemon);
       }, 1000);
     });
@@ -202,7 +217,7 @@ export function Pokemons() {
             <li key={item.id}>
               <button
                 className={`btn-pokemon ${item.types[0].type.name}`}
-                onClick={openModal}
+                onClick={handleOpenModal}
               >
                 <div className="image">
                   {item.sprites.other.dream_world.front_default && (
@@ -221,8 +236,8 @@ export function Pokemons() {
                       {item.id < 10
                         ? "#00" + item.id
                         : item.id < 100
-                        ? "#0" + item.id
-                        : "#" + item.id}
+                          ? "#0" + item.id
+                          : "#" + item.id}
                     </span>
                     <strong>
                       {item.name
@@ -250,7 +265,22 @@ export function Pokemons() {
         </button>
       </AreaPokemon>
 
-      {/* <Modal /> */}
+      {/* {modal && (
+        <Modal
+          isOpen={modal}
+          // id={id}
+          // name={name}
+          // abilities={abilities}
+          // damage_relations={}
+          // height={height}
+          // weight={weight}
+          // pokemon={pokemon}
+          // sprites={sprites}
+          // stats={stats}
+          // typesPokemon={type}
+          onRequestClose={handleCloseModal}
+        />
+      )} */}
     </>
   );
 }

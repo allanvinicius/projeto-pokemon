@@ -173,6 +173,7 @@ export const RepositoryList = styled.div`
 
 export const AreaPokemon = styled.div`
   padding-top: 7rem;
+  position: relative;
 
   .top {
     display: flex;
