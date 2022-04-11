@@ -9,17 +9,16 @@ interface SearchProps {
 }
 
 export function Search() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState([]);
+  const [string, setString] = useState("");
 
   function onChangeSearch(e: any) {
     setSearch(e.target.value);
   }
 
   function handleSearch() {
-    api.get("/pokemon?limit=1126&offset=0").then((response) => {
-        response.data.results.filter(({ name }: SearchProps) =>
-          name.includes(search)
-        )
+    api.get(`/pokemon/${string}`).then((response) => {
+       setSearch(response.data)
     });
   }
 

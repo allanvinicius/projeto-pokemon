@@ -59,7 +59,7 @@ export function Pokemons() {
   const [types, setTypes] = useState<TypesProps[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
-  const [modal, setModal] = useState("");
+  const [modal, setModal] = useState(false);
 
   async function handleTypes(name: any) {
     const resultado: any = [];
@@ -96,7 +96,7 @@ export function Pokemons() {
     setPokemons(resultado);
   }
 
-  async function handleShowMore() {
+  async function handleLoadMore() {
     const listPokemons: any = [];
 
     const response = await api.get(`pokemon?offset=0&limit=${currentPage}`);
@@ -111,12 +111,13 @@ export function Pokemons() {
 
     setCurrentPage(currentPage + 9);
 
+    setLoadmore(resultado);
+
    setPokemons(listPokemons);
   }
 
   function openModal() {
-    console.log("show");
-    setModal("show");
+    setModal(false);
   }
 
   useEffect(() => {
@@ -244,10 +245,12 @@ export function Pokemons() {
           ))}
         </ul>
 
-        <button onClick={handleShowMore} className="load">
+        <button onClick={handleLoadMore} className="load">
           Load more Pokémons
         </button>
       </AreaPokemon>
+
+      {/* <Modal /> */}
     </>
   );
 }

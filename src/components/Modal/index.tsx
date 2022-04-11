@@ -24,6 +24,8 @@ interface PokemonProps {
             name: string;
         }
     }];
+
+    modal: boolean;
 }
 
 interface TypesProps {
@@ -79,12 +81,12 @@ export function Modal() {
                                     item.name.slice(1)
                                     : ""}
                             </strong>
-                            <span>{item.id < 10 ? "#00" + item.id : item.id < 100 ? "#0" + item.id : item.id}</span>
+                            <span>{item.id < 10 ? "#00" + item.id : item.id < 100 ? "#0" + item.id : "#" + item.id}</span>
                         </div>
 
                         <ul className="info-types">
-                            {item.types.map(type => (
-                                <li>
+                            {item.types.map((type, index) => (
+                                <li key={index}>
                                     <small>{type.type.name}</small>
                                 </li>
                             ))}
@@ -93,12 +95,12 @@ export function Modal() {
                         <ul className="info-habilidades">
                             <li>
                                 <small>Height</small>
-                                <strong>{item.height}</strong>
+                                <strong>{item.height / 10} m</strong>
                             </li>
 
                             <li>
                                 <small>Weight</small>
-                                <strong>{item.weight}</strong>
+                                <strong>{item.weight / 10} kg</strong>
                             </li>
 
                             <li>
