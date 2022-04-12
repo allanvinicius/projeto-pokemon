@@ -28,7 +28,7 @@ interface PokemonProps {
       base_stat: number;
       stat: {
         name: string;
-      }
+      };
     }
   ];
   height: number;
@@ -61,12 +61,28 @@ interface TypesProps {
   ];
 }
 
+interface ModalProps {
+  pokemon: {
+    id: number;
+    name: string;
+    abilities: any;
+    sprites: any;
+    stats: any;
+    height: number;
+    weight: number;
+    typesPokemon: any;
+    damage_relations: any;
+    pokemons: any;
+  };
+}
+
 export function Pokemons() {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
   const [types, setTypes] = useState<TypesProps[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
+  const [pokemon, setPokemon] = useState<ModalProps[]>([]);
   const [modal, setModal] = useState(false);
 
   async function handleTypes(name: any) {
@@ -101,7 +117,7 @@ export function Pokemons() {
 
     setCount(response.data.count);
 
-    setCurrentPage(currentPage + 9)
+    setCurrentPage(currentPage + 9);
 
     setPokemons(resultado);
   }
@@ -126,8 +142,9 @@ export function Pokemons() {
     setPokemons(listPokemons);
   }
 
-  function handleOpenModal() {
+  function handleOpenModal(id: number) {
     setModal(true);
+    console.log(id);
   }
 
   function handleCloseModal() {
@@ -146,8 +163,9 @@ export function Pokemons() {
         })
       );
 
+      setCurrentPage(currentPage + 9);
+
       setTimeout(() => {
-        setCurrentPage(currentPage + 9);
         setPokemons(resultadoPokemon);
       }, 1000);
     });
@@ -217,7 +235,7 @@ export function Pokemons() {
             <li key={item.id}>
               <button
                 className={`btn-pokemon ${item.types[0].type.name}`}
-                onClick={handleOpenModal}
+                onClick={() => handleOpenModal(item.id)}
               >
                 <div className="image">
                   {item.sprites.other.dream_world.front_default && (
@@ -236,8 +254,8 @@ export function Pokemons() {
                       {item.id < 10
                         ? "#00" + item.id
                         : item.id < 100
-                          ? "#0" + item.id
-                          : "#" + item.id}
+                        ? "#0" + item.id
+                        : "#" + item.id}
                     </span>
                     <strong>
                       {item.name
@@ -265,22 +283,14 @@ export function Pokemons() {
         </button>
       </AreaPokemon>
 
-      {/* {modal && (
+      {pokemon.map((item) => (
         <Modal
+          key={item.pokemon.id}
           isOpen={modal}
-          // id={id}
-          // name={name}
-          // abilities={abilities}
-          // damage_relations={}
-          // height={height}
-          // weight={weight}
-          // pokemon={pokemon}
-          // sprites={sprites}
-          // stats={stats}
-          // typesPokemon={type}
+          pokemon={item.pokemon}
           onRequestClose={handleCloseModal}
         />
-      )} */}
+      ))}
     </>
   );
 }

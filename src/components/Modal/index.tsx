@@ -65,7 +65,7 @@ interface ModalProps {
         weight: number;
         typesPokemon: any;
         damage_relations: any;
-        pokemon: any;
+        pokemons: any;
     }
 }
 
@@ -74,8 +74,8 @@ export function Modal({
     onRequestClose,
     pokemon,
 }: ModalProps) {
-    const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-    const [types, setTypes] = useState<TypesProps[]>([]);
+    // const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
+    // const [types, setTypes] = useState<TypesProps[]>([]);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
@@ -99,7 +99,7 @@ export function Modal({
                 <>
                     <div className="left">
                         <div className="icone">
-                            <Image src={`/assets/${typesPokemon[0].type.name}`.concat(".svg")}
+                            <Image src={`/assets/${pokemon.typesPokemon[0].type.name}`.concat(".svg")}
                                 width={16}
                                 height={16}
                                 alt="icone"
@@ -107,9 +107,9 @@ export function Modal({
                         </div>
 
                         <div className="pokemon">
-                            {sprites.other.dream_world.front_default && (
+                            {pokemon.sprites.other.dream_world.front_default && (
                                 <Image
-                                    src={sprites.other.dream_world.front_default}
+                                    src={pokemon.sprites.other.dream_world.front_default}
                                     alt="image"
                                     width={202}
                                     height={202}
@@ -121,16 +121,16 @@ export function Modal({
                     <div className="right">
                         <div className="info-pokemon">
                             <strong>
-                                {name
-                                    ? name.charAt(0).toUpperCase() +
-                                    name.slice(1)
+                                {pokemon.name
+                                    ? pokemon.name.charAt(0).toUpperCase() +
+                                    pokemon.name.slice(1)
                                     : ""}
                             </strong>
-                            <span>{id < 10 ? "#00" + id : id < 100 ? "#0" + id : "#" + id}</span>
+                            <span>{pokemon.id < 10 ? "#00" + pokemon.id : pokemon.id < 100 ? "#0" + pokemon.id : "#" + pokemon.id}</span>
                         </div>
 
                         <ul className="info-types">
-                            {types.map((type, index) => (
+                            {pokemon.typesPokemon.map((type:any, index:number) => (
                                 <li key={index}>
                                     <small>{type.name}</small>
                                 </li>
@@ -140,17 +140,17 @@ export function Modal({
                         <ul className="info-habilidades">
                             <li>
                                 <small>Height</small>
-                                <strong>{height / 10} m</strong>
+                                <strong>{pokemon.height / 10} m</strong>
                             </li>
 
                             <li>
                                 <small>Weight</small>
-                                <strong>{weight / 10} kg</strong>
+                                <strong>{pokemon.weight / 10} kg</strong>
                             </li>
 
                             <li>
                                 <small>Abilities</small>
-                                <strong>{abilities[0].ability.name}</strong>
+                                <strong>{pokemon.abilities[0].ability.name}</strong>
                             </li>
                         </ul>
 
@@ -160,7 +160,7 @@ export function Modal({
                             <ul>
                                 <li>
                                     <div className="tag">
-                                        {damage_relations.double_damage_from.map((item: any) => {
+                                        {pokemon.damage_relations.double_damage_from.map((item: any) => {
                                             item.name
                                         })}
                                     </div>
@@ -173,12 +173,12 @@ export function Modal({
 
                             <ul>
                                 <li>
-                                    <small>{stats.map((name: any) => {
+                                    <small>{pokemon.stats.map((name: any) => {
                                         name.stat.name
                                     })}</small>
 
                                     <ul className="separator">
-                                        <li>{stats.map((base: any) => {
+                                        <li>{pokemon.stats.map((base: any) => {
                                             base.base_stat + "%"
                                         })}</li>
                                     </ul>
