@@ -2,55 +2,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { BoxModal } from "./styles";
 import close from "../../../public/assets/close.svg";
-import { api } from "../../pages/services/api";
-
-interface PokemonProps {
-    id: number;
-    name: string;
-    abilities: [{
-        ability: {
-            name: string;
-        }
-    }];
-    sprites: {
-        other: {
-            dream_world: {
-                front_default: string;
-            }
-        }
-    };
-    stats: [
-        {
-            base_stat: number;
-            stat: {
-                name: string;
-            }
-        }
-    ];
-    height: number;
-    weight: number;
-    types: [{
-        type: {
-            name: string;
-        }
-    }];
-}
-
-interface TypesProps {
-    name: string;
-    damage_relations: {
-        double_damage_from: [{
-            name: string;
-        }]
-    }
-    pokemon: [
-        {
-            pokemon: {
-                name: string;
-            };
-        }
-    ];
-}
 
 interface ModalProps {
     isOpen: boolean;
@@ -63,26 +14,19 @@ interface ModalProps {
         stats: any;
         height: number;
         weight: number;
-        typesPokemon: any;
+        types: any;
         damage_relations: any;
         pokemons: any;
     }
 }
 
-export function Modal({
-    isOpen,
-    onRequestClose,
-    pokemon,
-}: ModalProps) {
-    // const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-    // const [types, setTypes] = useState<TypesProps[]>([]);
-    const [modal, setModal] = useState(false);
+export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
 
     useEffect(() => {
         if (typeof window !== undefined) {
             const html = document.querySelector('html');
             if (html) {
-                html.style.overflow = isOpen ? 'hidden' : 'unset';
+                html.style.display = isOpen ? 'initial' : 'none';
             }
         }
     }, [isOpen]);
@@ -96,97 +40,169 @@ export function Modal({
                     <Image src={close} alt="close" />
                 </button>
 
-                <>
-                    <div className="left">
-                        <div className="icone">
-                            <Image src={`/assets/${pokemon.typesPokemon[0].type.name}`.concat(".svg")}
-                                width={16}
-                                height={16}
-                                alt="icone"
+                <div className={`left ${pokemon.types[0].type.name}`}>
+                    <div className="icone">
+                        <Image src={`/assets/${pokemon.types[0].type.name}`.concat(".svg")}
+                            width={16}
+                            height={16}
+                            alt="icone"
+                        />
+                    </div>
+
+                    <div className="pokemon">
+                        {pokemon.sprites.other.dream_world.front_default && (
+                            <Image
+                                src={pokemon.sprites.other.dream_world.front_default}
+                                alt="image"
+                                width={202}
+                                height={202}
                             />
-                        </div>
+                        )}
+                    </div>
+                </div>
 
-                        <div className="pokemon">
-                            {pokemon.sprites.other.dream_world.front_default && (
-                                <Image
-                                    src={pokemon.sprites.other.dream_world.front_default}
-                                    alt="image"
-                                    width={202}
-                                    height={202}
-                                />
+                <div className="right">
+                    <div className="info-pokemon">
+                        <h2>
+                            {pokemon.name
+                                ? pokemon.name.charAt(0).toUpperCase() +
+                                pokemon.name.slice(1)
+                                : ""}
+                        </h2>
+                        <span>{pokemon.id < 10 ? "#00" + pokemon.id : pokemon.id < 100 ? "#0" + pokemon.id : "#" + pokemon.id}</span>
+                    </div>
+
+                    <ul className="info-types">
+                        <li>
+                            <small className={`tag ${pokemon.types[0].type.name}`}>
+                                {pokemon.types[0].type.name.charAt(0).toUpperCase() + pokemon.types[0].type.name.slice(1)}
+                            </small>
+                        </li>
+
+                        <li>
+                            {pokemon.types.length > 1 && (
+                                <small className={`tag ${pokemon.types[1].type.name}`}>
+                                    {pokemon.types[1].type.name.charAt(0).toUpperCase() + pokemon.types[1].type.name.slice(1)}
+                                </small>
                             )}
-                        </div>
+                        </li>
+                    </ul>
+
+                    <ul className="info-habilidades">
+                        <li>
+                            <small>Height</small>
+                            <strong>{pokemon.height / 10} m</strong>
+                        </li>
+
+                        <li>
+                            <small>Weight</small>
+                            <strong>{pokemon.weight / 10} kg</strong>
+                        </li>
+
+                        <li>
+                            <small>Abilities</small>
+                            <strong>{pokemon.abilities[0].ability.name.charAt(0).toUpperCase() + pokemon.abilities[0].ability.name.slice(1)}</strong>
+                        </li>
+                    </ul>
+
+                    <div className="info-fraquezas">
+                        <strong>Weaknesses</strong>
+
+                        {/* <ul>
+                            <li>
+                                <small className={`tag ${pokemon.types[0].type.name}`}>
+                                    {pokemon.damage_relations.double_damage_from[0].name}
+                                </small>
+                            </li>
+
+                            <li>
+                                {pokemon.damage_relations.double_damage_from.length > 1 && (
+                                    <small className={`tag ${pokemon.types[1].type.name}`}>
+                                        {pokemon.damage_relations.double_damage_from[1].name}
+                                    </small>
+                                )}
+                            </li>
+
+                            <li>
+                                {pokemon.damage_relations.double_damage_from.length > 2 && (
+                                    <small className={`tag ${pokemon.types[2].type.name}`}>
+                                        {pokemon.damage_relations.double_damage_from[2].name}
+                                    </small>
+                                )}
+                            </li>
+
+                            <li>
+                                {pokemon.damage_relations.double_damage_from.length > 3 && (
+                                    <small className={`tag ${pokemon.types[3].type.name}`}>
+                                        {pokemon.damage_relations.double_damage_from[3].name}
+                                    </small>
+                                )}
+                            </li>
+
+                            <li>
+                                {pokemon.damage_relations.double_damage_from.length > 4 && (
+                                    <small className={`tag ${pokemon.types[4].type.name}`}>
+                                        {pokemon.damage_relations.double_damage_from[4].name}
+                                    </small>
+                                )}
+                            </li>
+                        </ul> */}
                     </div>
 
-                    <div className="right">
-                        <div className="info-pokemon">
-                            <strong>
-                                {pokemon.name
-                                    ? pokemon.name.charAt(0).toUpperCase() +
-                                    pokemon.name.slice(1)
-                                    : ""}
-                            </strong>
-                            <span>{pokemon.id < 10 ? "#00" + pokemon.id : pokemon.id < 100 ? "#0" + pokemon.id : "#" + pokemon.id}</span>
-                        </div>
+                    <div className="info-stats">
+                        <strong>Stats</strong>
 
-                        <ul className="info-types">
-                            {pokemon.typesPokemon.map((type:any, index:number) => (
-                                <li key={index}>
-                                    <small>{type.name}</small>
-                                </li>
-                            ))}
+                        <ul>
+                            <li>
+                                <small>{pokemon.stats[0].stat.name.toUpperCase()}</small>
+
+                                <div className="status">
+                                    {/* <li>{pokemon.stats[0].base_stat + "%"}</li> */}
+                                </div>
+                            </li>
+
+                            <li>
+                                <small>{pokemon.stats[1].stat.name}</small>
+
+                                <div className="status">
+                                    {/* <li>{pokemon.stats[1].base_stat + "%"}</li> */}
+                                </div>
+                            </li>
+
+                            <li>
+                                <small>{pokemon.stats[2].stat.name}</small>
+
+                                <div className="status">
+                                    {/* <li>{pokemon.stats[2].base_stat + "%"}</li> */}
+                                </div>
+                            </li>
+
+                            <li>
+                                <small>{pokemon.stats[3].stat.name}</small>
+
+                                <div className="status">
+                                    {/* <li>{pokemon.stats[3].base_stat + "%"}</li> */}
+                                </div>
+                            </li>
+
+                            <li>
+                                <small>{pokemon.stats[4].stat.name}</small>
+
+                                <div className="status">
+                                    {/* <li>{pokemon.stats[4].base_stat + "%"}</li> */}
+                                </div>
+                            </li>
+
+                            <li>
+                                <small>{pokemon.stats[5].stat.name}</small>
+
+                                <div className="status">
+                                    {/* <li>{pokemon.stats[5].base_stat + "%"}</li> */}
+                                </div>
+                            </li>
                         </ul>
-
-                        <ul className="info-habilidades">
-                            <li>
-                                <small>Height</small>
-                                <strong>{pokemon.height / 10} m</strong>
-                            </li>
-
-                            <li>
-                                <small>Weight</small>
-                                <strong>{pokemon.weight / 10} kg</strong>
-                            </li>
-
-                            <li>
-                                <small>Abilities</small>
-                                <strong>{pokemon.abilities[0].ability.name}</strong>
-                            </li>
-                        </ul>
-
-                        <div className="info-fraquezas">
-                            <h2>Weaknesses</h2>
-
-                            <ul>
-                                <li>
-                                    <div className="tag">
-                                        {pokemon.damage_relations.double_damage_from.map((item: any) => {
-                                            item.name
-                                        })}
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className="info-stats">
-                            <h2>Stats</h2>
-
-                            <ul>
-                                <li>
-                                    <small>{pokemon.stats.map((name: any) => {
-                                        name.stat.name
-                                    })}</small>
-
-                                    <ul className="separator">
-                                        <li>{pokemon.stats.map((base: any) => {
-                                            base.base_stat + "%"
-                                        })}</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
-                </>
+                </div>
             </div>
         </BoxModal>
     );

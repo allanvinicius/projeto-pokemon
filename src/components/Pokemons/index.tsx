@@ -61,28 +61,13 @@ interface TypesProps {
   ];
 }
 
-interface ModalProps {
-  pokemon: {
-    id: number;
-    name: string;
-    abilities: any;
-    sprites: any;
-    stats: any;
-    height: number;
-    weight: number;
-    typesPokemon: any;
-    damage_relations: any;
-    pokemons: any;
-  };
-}
-
 export function Pokemons() {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
   const [types, setTypes] = useState<TypesProps[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
-  const [pokemon, setPokemon] = useState<ModalProps[]>([]);
+  const [detalhes, setDetalhes] = useState<any>();
   const [modal, setModal] = useState(false);
 
   async function handleTypes(name: any) {
@@ -144,7 +129,10 @@ export function Pokemons() {
 
   function handleOpenModal(id: number) {
     setModal(true);
-    console.log(id);
+
+    const pokemon = pokemons.find(poke => poke.id === id);
+
+    setDetalhes(pokemon);
   }
 
   function handleCloseModal() {
@@ -254,8 +242,8 @@ export function Pokemons() {
                       {item.id < 10
                         ? "#00" + item.id
                         : item.id < 100
-                        ? "#0" + item.id
-                        : "#" + item.id}
+                          ? "#0" + item.id
+                          : "#" + item.id}
                     </span>
                     <strong>
                       {item.name
@@ -283,14 +271,14 @@ export function Pokemons() {
         </button>
       </AreaPokemon>
 
-      {pokemon.map((item) => (
+      {modal && (
         <Modal
-          key={item.pokemon.id}
+          key={detalhes}
           isOpen={modal}
-          pokemon={item.pokemon}
+          pokemon={detalhes}
           onRequestClose={handleCloseModal}
         />
-      ))}
+      )}
     </>
   );
 }
