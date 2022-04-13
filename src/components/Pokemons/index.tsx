@@ -44,6 +44,7 @@ interface PokemonProps {
 
 interface TypesProps {
   name: string;
+  id: number;
   damage_relations: {
     double_damage_from: [
       {

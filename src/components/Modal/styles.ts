@@ -158,7 +158,7 @@ export const BoxModal = styled.div<Props>`
 
         .right {
             width: 100%;
-            max-width: 37.3rem;
+            max-width: 51.9rem;
             padding-left: 7.4rem;
             padding-top: 3.5rem;
 
@@ -409,7 +409,7 @@ export const BoxModal = styled.div<Props>`
                             font-size: 1.2rem;
                             line-height: 1.5rem;
                             color: #7A7D80;
-                            margin-right: 2rem;
+                            margin-right: 2.2rem;
                         }
 
                         .status {
@@ -418,6 +418,11 @@ export const BoxModal = styled.div<Props>`
                             max-width: 28.3rem;
                             height: 0.3rem;
                             background-color: #EFF3F6;
+
+                            li {
+                                background-color: #C20001;
+                                height: 100%;
+                            }
                         }
                     } 
                 }
