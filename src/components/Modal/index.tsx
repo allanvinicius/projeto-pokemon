@@ -72,8 +72,8 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
               {pokemon.id < 10
                 ? "#00" + pokemon.id
                 : pokemon.id < 100
-                ? "#0" + pokemon.id
-                : "#" + pokemon.id}
+                  ? "#0" + pokemon.id
+                  : "#" + pokemon.id}
             </span>
           </div>
 
@@ -137,7 +137,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 <small>{pokemon.stats[0].stat.name.toUpperCase()}</small>
 
                 <div className="status">
-                  <li style={{ width: `${pokemon.stats[0].base_stat}%` }}></li>
+                  <div className="item" style={{ width: `${pokemon.stats[0].base_stat}%` }}></div>
+
+                  <ul className="separadores">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
                 </div>
               </li>
 
@@ -148,7 +155,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <li style={{ width: `${pokemon.stats[1].base_stat}%` }}></li>
+                  <div className="item" style={{ width: `${pokemon.stats[1].base_stat}%` }}></div>
+
+                  <ul className="separadores">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
                 </div>
               </li>
 
@@ -159,7 +173,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <li style={{ width: `${pokemon.stats[2].base_stat}%` }}></li>
+                  <div className="item" style={{ width: `${pokemon.stats[2].base_stat}%` }}></div>
+
+                  <ul className="separadores">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
                 </div>
               </li>
 
@@ -169,7 +190,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <li style={{ width: `${pokemon.stats[3].base_stat}%` }}></li>
+                  <div className="item" style={{ width: `${pokemon.stats[3].base_stat}%` }}></div>
+
+                  <ul className="separadores">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
                 </div>
               </li>
 
@@ -179,7 +207,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <li style={{ width: `${pokemon.stats[4].base_stat}%` }}></li>
+                  <div className="item" style={{ width: `${pokemon.stats[4].base_stat}%` }}></div>
+
+                  <ul className="separadores">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
                 </div>
               </li>
 
@@ -190,7 +225,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <li style={{ width: `${pokemon.stats[5].base_stat}%` }}></li>
+                  <div className="item" style={{ width: `${pokemon.stats[5].base_stat}%` }}></div>
+
+                  <ul className="separadores">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
                 </div>
               </li>
             </ul>

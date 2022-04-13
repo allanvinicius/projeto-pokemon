@@ -16,10 +16,21 @@ import luzes from "../../public/assets/luzes.svg";
 import arrow from "../../public/assets/arrow-down.svg";
 
 import { Search } from "../components/Search";
-import React from "react";
+import React, { useState } from "react";
 import { Pokemons } from "../components/Pokemons";
+import { api } from "./services/api";
 
 export default function Home() {
+  const [text, setText] = useState('');
+
+  function handleSearch() {
+    api.get(`pokemon/${text.toLocaleLowerCase()}`).then(response => {
+      const elem = response.data.results;
+
+      setText(elem);
+    })
+  }
+
   return (
     <>
       <Head>
@@ -132,7 +143,7 @@ export default function Home() {
         </Swiper>
       </SectionBanner>
 
-      <Search />
+      <Search onChange={(item: any) => setText(item)} value={text} handleClick={handleSearch} />
 
       <SectionPokemons>
         <div className="container">

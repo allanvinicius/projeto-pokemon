@@ -1,25 +1,21 @@
 import { SectionSearch } from "./styles";
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import btnSearch from "../../../public/assets/search.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { api } from "../../pages/services/api";
 
 interface SearchProps {
-  name: string;
+  value: any;
+  onChange: any;
+  handleClick: any;
 }
 
-export function Search() {
-  const [search, setSearch] = useState([]);
-  const [string, setString] = useState("");
+export function Search({ onChange, value, handleClick }: SearchProps) {
 
-  function onChangeSearch(e: any) {
-    setSearch(e.target.value);
-  }
-
-  function handleSearch() {
-    api.get(`/pokemon/${string}`).then((response) => {
-       console.log(response.data)
-    });
+  function handleChange(event: any) {
+    // const resultado:any = [];
+    onChange(event.target.value);
   }
 
   return (
@@ -30,11 +26,12 @@ export function Search() {
         <div className="search">
           <input
             type="text"
-            onChange={onChangeSearch}
+            onChange={handleChange}
+            value={value}
             placeholder="Search name or code"
           />
 
-          <button onClick={handleSearch} type="button">
+          <button onClick={handleClick} type="button">
             <Image src={btnSearch} title="search" alt="search" />
           </button>
         </div>

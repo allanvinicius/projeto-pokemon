@@ -161,6 +161,7 @@ export const BoxModal = styled.div<Props>`
             max-width: 51.9rem;
             padding-left: 7.4rem;
             padding-top: 3.5rem;
+            padding-right: 7.2rem;
 
             .info-pokemon {
                 display: flex;
@@ -410,6 +411,7 @@ export const BoxModal = styled.div<Props>`
                             line-height: 1.5rem;
                             color: #7A7D80;
                             margin-right: 2.2rem;
+                            width: 6.4rem;
                         }
 
                         .status {
@@ -418,10 +420,35 @@ export const BoxModal = styled.div<Props>`
                             max-width: 28.3rem;
                             height: 0.3rem;
                             background-color: #EFF3F6;
+                            overflow: hidden;
 
-                            li {
+                            .item {
                                 background-color: #C20001;
                                 height: 100%;
+                            }
+
+                            .separadores {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin-top: 0;
+
+                                li {
+                                    width: 0.4rem;
+                                    height: 0.4rem;
+                                    background-color: #FFFF;
+                                    margin-left: 5.4rem;
+                                    margin-bottom: 0;
+
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
+                                }
                             }
                         }
                     } 
