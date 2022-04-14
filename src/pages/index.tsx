@@ -21,14 +21,35 @@ import { Pokemons } from "../components/Pokemons";
 import { api } from "./services/api";
 
 export default function Home() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
+  // const [search, setSearch] = useState<{
+  //   id: number;
+  //   name: string;
+  //   abilities: any;
+  //   sprites: any;
+  //   stats: any;
+  //   height: number;
+  //   weight: number;
+  //   types: any;
+  //   damage_relations: any;
+  //   pokemons: any;
+  // }>({
+  //   id: 0,
+  //   name: "",
+  //   abilities: null,
+  //   sprites: null,
+  //   stats: null,
+  //   height: 0,
+  //   weight: 0,
+  //   types: null,
+  //   damage_relations: null,
+  //   pokemons: null,
+  // });
 
   function handleSearch() {
-    api.get(`pokemon/${text.toLocaleLowerCase()}`).then(response => {
+    api.get(`pokemon/${text.toLocaleLowerCase()}`).then((response) => {
       const elem = response.data.results;
-
-      setText(elem);
-    })
+    });
   }
 
   return (
@@ -143,7 +164,11 @@ export default function Home() {
         </Swiper>
       </SectionBanner>
 
-      <Search onChange={(item: any) => setText(item)} value={text} handleClick={handleSearch} />
+      <Search
+        onChange={(item: any) => setText(item)}
+        value={text}
+        handleClick={handleSearch}
+      />
 
       <SectionPokemons>
         <div className="container">

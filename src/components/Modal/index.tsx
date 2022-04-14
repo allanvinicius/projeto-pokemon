@@ -15,7 +15,7 @@ interface ModalProps {
     height: number;
     weight: number;
     types: any;
-    damage_relations: any;
+    double_damage_from: any;
     pokemons: any;
   };
 }
@@ -72,8 +72,8 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
               {pokemon.id < 10
                 ? "#00" + pokemon.id
                 : pokemon.id < 100
-                  ? "#0" + pokemon.id
-                  : "#" + pokemon.id}
+                ? "#0" + pokemon.id
+                : "#" + pokemon.id}
             </span>
           </div>
 
@@ -119,13 +119,45 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
             <strong>Weaknesses</strong>
 
             <ul>
-              {/* {pokemon.damage_relations.double_damage_from.map(({name}:any, index:number) => (
-                <li key={index}>
+              {/* <li>
+                {pokemon.double_damage_from.length > 0 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {name}
+                    {pokemon.double_damage_from[0].name}
                   </small>
-                </li>
-              ))} */}
+                )}
+              </li>
+
+              <li>
+                {pokemon.double_damage_from.length > 1 && (
+                  <small className={`tag ${pokemon.types[0].type.name}`}>
+                    {pokemon.double_damage_from[1].name}
+                  </small>
+                )}
+              </li>
+
+              <li>
+                {pokemon.double_damage_from.length > 2 && (
+                  <small className={`tag ${pokemon.types[0].type.name}`}>
+                    {pokemon.double_damage_from[2].name}
+                  </small>
+                )}
+              </li>
+
+              <li>
+                {pokemon.double_damage_from.length > 3 && (
+                  <small className={`tag ${pokemon.types[0].type.name}`}>
+                    {pokemon.double_damage_from[3].name}
+                  </small>
+                )}
+              </li>
+
+              <li>
+                {pokemon.double_damage_from.length > 4 && (
+                  <small className={`tag ${pokemon.types[0].type.name}`}>
+                    {pokemon.double_damage_from[4].name}
+                  </small>
+                )}
+              </li> */}
             </ul>
           </div>
 
@@ -137,7 +169,10 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 <small>{pokemon.stats[0].stat.name.toUpperCase()}</small>
 
                 <div className="status">
-                  <div className="item" style={{ width: `${pokemon.stats[0].base_stat}%` }}></div>
+                  <div
+                    className="item"
+                    style={{ width: `${pokemon.stats[0].base_stat}%` }}
+                  ></div>
 
                   <ul className="separadores">
                     <li></li>
@@ -155,7 +190,10 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <div className="item" style={{ width: `${pokemon.stats[1].base_stat}%` }}></div>
+                  <div
+                    className="item"
+                    style={{ width: `${pokemon.stats[1].base_stat}%` }}
+                  ></div>
 
                   <ul className="separadores">
                     <li></li>
@@ -173,7 +211,10 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <div className="item" style={{ width: `${pokemon.stats[2].base_stat}%` }}></div>
+                  <div
+                    className="item"
+                    style={{ width: `${pokemon.stats[2].base_stat}%` }}
+                  ></div>
 
                   <ul className="separadores">
                     <li></li>
@@ -186,11 +227,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
 
               <li>
                 <small>
-                  {pokemon.stats[3].stat.name.replace('special-', 'Sp.')}
+                  {pokemon.stats[3].stat.name.replace("special-", "Sp.")}
                 </small>
 
                 <div className="status">
-                  <div className="item" style={{ width: `${pokemon.stats[3].base_stat}%` }}></div>
+                  <div
+                    className="item"
+                    style={{ width: `${pokemon.stats[3].base_stat}%` }}
+                  ></div>
 
                   <ul className="separadores">
                     <li></li>
@@ -203,11 +247,14 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
 
               <li>
                 <small>
-                  {pokemon.stats[4].stat.name.replace('special-', 'Sp.')}
+                  {pokemon.stats[4].stat.name.replace("special-", "Sp.")}
                 </small>
 
                 <div className="status">
-                  <div className="item" style={{ width: `${pokemon.stats[4].base_stat}%` }}></div>
+                  <div
+                    className="item"
+                    style={{ width: `${pokemon.stats[4].base_stat}%` }}
+                  ></div>
 
                   <ul className="separadores">
                     <li></li>
@@ -225,7 +272,10 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
                 </small>
 
                 <div className="status">
-                  <div className="item" style={{ width: `${pokemon.stats[5].base_stat}%` }}></div>
+                  <div
+                    className="item"
+                    style={{ width: `${pokemon.stats[5].base_stat}%` }}
+                  ></div>
 
                   <ul className="separadores">
                     <li></li>

@@ -130,8 +130,13 @@ export function Pokemons() {
 
   function handleOpenModal(id: number) {
     setModal(true);
+    const pokemon = pokemons.find((poke) => poke.id === id);
 
-    const pokemon = pokemons.find(poke => poke.id === id);
+    api.get(`type/${id}`).then((response) => {
+      const elem = response.data.damage_relations;
+
+      console.log(elem);
+    });
 
     setDetalhes(pokemon);
   }
@@ -243,8 +248,8 @@ export function Pokemons() {
                       {item.id < 10
                         ? "#00" + item.id
                         : item.id < 100
-                          ? "#0" + item.id
-                          : "#" + item.id}
+                        ? "#0" + item.id
+                        : "#" + item.id}
                     </span>
                     <strong>
                       {item.name
