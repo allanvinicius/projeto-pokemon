@@ -15,7 +15,7 @@ interface ModalProps {
     height: number;
     weight: number;
     types: any;
-    double_damage_from: any;
+    damage_relations: any;
     pokemons: any;
   };
 }
@@ -120,38 +120,38 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
 
             <ul>
               {/* <li>
-                {pokemon.double_damage_from.length > 0 && (
+                {pokemon.damage_relations.double_damage_from.length > 0 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {pokemon.double_damage_from[0].name}
+                    {pokemon.damage_relations.double_damage_from[0].name}
                   </small>
                 )}
-              </li>
+              </li> */}
 
-              <li>
+              {/* <li>
                 {pokemon.double_damage_from.length > 1 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
                     {pokemon.double_damage_from[1].name}
                   </small>
                 )}
-              </li>
+              </li> */}
 
-              <li>
+              {/* <li>
                 {pokemon.double_damage_from.length > 2 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
                     {pokemon.double_damage_from[2].name}
                   </small>
                 )}
-              </li>
+              </li> */}
 
-              <li>
+              {/* <li>
                 {pokemon.double_damage_from.length > 3 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
                     {pokemon.double_damage_from[3].name}
                   </small>
                 )}
-              </li>
+              </li> */}
 
-              <li>
+              {/* <li>
                 {pokemon.double_damage_from.length > 4 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
                     {pokemon.double_damage_from[4].name}

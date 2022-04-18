@@ -1,9 +1,6 @@
 import { SectionSearch } from "./styles";
 import Image from "next/image";
-import { useRouter } from 'next/router';
 import btnSearch from "../../../public/assets/search.svg";
-import { useEffect, useState, useRef } from "react";
-import { api } from "../../pages/services/api";
 
 interface SearchProps {
   value: any;
@@ -11,10 +8,8 @@ interface SearchProps {
   handleClick: any;
 }
 
-export function Search({ onChange, value, handleClick }: SearchProps) {
-
+export function Search({ value, onChange, handleClick }: SearchProps) {
   function handleChange(event: any) {
-    // const resultado:any = [];
     onChange(event.target.value);
   }
 
@@ -31,7 +26,11 @@ export function Search({ onChange, value, handleClick }: SearchProps) {
             placeholder="Search name or code"
           />
 
-          <button onClick={handleClick} type="button">
+          <button
+            onClick={handleClick}
+            disabled={value === "" ? true : false}
+            type="button"
+          >
             <Image src={btnSearch} title="search" alt="search" />
           </button>
         </div>

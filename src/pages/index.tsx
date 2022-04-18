@@ -22,33 +22,11 @@ import { api } from "./services/api";
 
 export default function Home() {
   const [text, setText] = useState("");
-  // const [search, setSearch] = useState<{
-  //   id: number;
-  //   name: string;
-  //   abilities: any;
-  //   sprites: any;
-  //   stats: any;
-  //   height: number;
-  //   weight: number;
-  //   types: any;
-  //   damage_relations: any;
-  //   pokemons: any;
-  // }>({
-  //   id: 0,
-  //   name: "",
-  //   abilities: null,
-  //   sprites: null,
-  //   stats: null,
-  //   height: 0,
-  //   weight: 0,
-  //   types: null,
-  //   damage_relations: null,
-  //   pokemons: null,
-  // });
+  const [search, setSearch] = useState<any>([]);
 
   function handleSearch() {
     api.get(`pokemon/${text.toLocaleLowerCase()}`).then((response) => {
-      const elem = response.data.results;
+      setSearch(response.data);
     });
   }
 
@@ -61,12 +39,17 @@ export default function Home() {
       <SectionBanner>
         <Swiper
           navigation={true}
+          pagination={{
+            clickable: false,
+            el: ".slide-banner .pagination",
+          }}
           autoplay={{
             delay: 4e3,
             disableOnInteraction: false,
           }}
           modules={[Navigation, EffectFade, Autoplay, Pagination]}
           effect={"fade"}
+          className="slide-banner"
         >
           <SwiperSlide>
             <div className="area-slide">
@@ -107,9 +90,7 @@ export default function Home() {
                     <small>explore</small>
                   </div>
 
-                  {/* <div className="right">
-                    <Swiper pagination={true} modules={[Pagination]}></Swiper>
-                  </div> */}
+                  <div className="pagination"></div>
                 </div>
               </div>
             </div>
@@ -154,9 +135,7 @@ export default function Home() {
                     <small>explore</small>
                   </div>
 
-                  {/* <div className="right">
-                    <Swiper pagination={true} modules={[Pagination]}></Swiper>
-                  </div> */}
+                  <div className="pagination"></div>
                 </div>
               </div>
             </div>
@@ -165,8 +144,8 @@ export default function Home() {
       </SectionBanner>
 
       <Search
-        onChange={(item: any) => setText(item)}
         value={text}
+        onChange={(item: any) => setText(item)}
         handleClick={handleSearch}
       />
 

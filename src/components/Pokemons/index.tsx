@@ -5,6 +5,7 @@ import { AreaPokemon, RepositoryList } from "./styles";
 import icone from "../../../public/assets/icone-pokeball.svg";
 import iconeAll from "../../../public/assets/icone-all.svg";
 import { Modal } from "../Modal";
+import { Search } from "../Search";
 
 interface PokemonProps {
   id: number;
@@ -60,6 +61,21 @@ interface TypesProps {
       };
     }
   ];
+}
+
+interface SearchProps {
+  pokemon: {
+    id: number;
+    name: string;
+    abilities: any;
+    sprites: any;
+    stats: any;
+    height: number;
+    weight: number;
+    types: any;
+    damage_relations: any;
+    pokemons: any;
+  };
 }
 
 export function Pokemons() {
@@ -132,13 +148,22 @@ export function Pokemons() {
     setModal(true);
     const pokemon = pokemons.find((poke) => poke.id === id);
 
-    api.get(`type/${id}`).then((response) => {
-      const elem = response.data.damage_relations;
+    // const type = types.find(type => type.id === id);
 
-      console.log(elem);
-    });
+    // api.get(`type/`).then((response) => {
+    //   response.data.results.map((item:any) => {
+    //     api.get(item.url).then(resp => {
+    //       const elem = resp.data.damage_relations.double_damage_from;
+
+    //       setDetalhes(elem);
+
+    //       console.log(detalhes);
+    //     })
+    //   })
+    // });
 
     setDetalhes(pokemon);
+    // console.log(type);
   }
 
   function handleCloseModal() {
@@ -150,7 +175,7 @@ export function Pokemons() {
 
     // Requisição para listar os pokémons
     const resultadoPokemon: any = [];
-    api.get(`pokemon?limit=${currentPage}&offset=0`).then((response) => {
+    api.get(`pokemon?limit=9&offset=0`).then((response) => {
       response.data.results.map((item: any) =>
         api.get(item.url).then((resp) => {
           resultadoPokemon.push(resp.data);

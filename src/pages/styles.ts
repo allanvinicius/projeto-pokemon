@@ -175,6 +175,22 @@ export const SectionBanner = styled.section`
               margin-left: 3rem;
             }
           }
+
+          .pagination {
+            position: absolute;
+            z-index: 9;
+            right: 0;
+            left: initial;
+            width: fit-content;
+            bottom: 7.7rem;
+
+            .swiper-pagination-bullet {
+              background: #ffff;
+              width: 2rem;
+              height: 2rem;
+              border-radius: 50%;
+            }
+          }
         }
       }
     }

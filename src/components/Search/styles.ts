@@ -41,12 +41,19 @@ export const SectionSearch = styled.section`
     border-radius: 122px;
     padding-right: 0.7rem;
     padding-left: 2.5rem;
+    border: 1px solid transparent;
+    transition: border .3s ease;
+
+    &:focus-within {
+      border: 1px solid #3e75c3;
+    }
 
     input {
       flex: 1;
       font-weight: 400;
       font-size: 1.5rem;
       line-height: 2.2rem;
+      background-color: #ffffff;
       color: #a0afba;
 
       &::placeholder {
@@ -64,6 +71,11 @@ export const SectionSearch = styled.section`
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
     }
   }
 `;
