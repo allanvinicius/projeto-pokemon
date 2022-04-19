@@ -86,6 +86,7 @@ export function Pokemons() {
   const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
   const [detalhes, setDetalhes] = useState<any>();
   const [modal, setModal] = useState(false);
+  const [results, setResults] = useState(false);
 
   async function handleTypes(name: any) {
     const resultado: any = [];
