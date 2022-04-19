@@ -205,4 +205,220 @@ export const SectionPokemons = styled.section`
     align-items: flex-start;
     justify-content: space-between;
   }
+
+  .list-types {
+    border-right: 1px solid #EFF3F6;
+    width: 100%;
+    max-width: 25.9rem;
+    padding-top: 7rem;
+
+    .all {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem;
+
+      .icone {
+        margin-right: 2.5rem;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      span {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 2.2rem;
+        color: #3E75C3;
+      }
+    }
+
+    ul {
+      li {
+        margin-bottom: 4rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .btn-type {
+          display: flex;
+          align-items: center;
+          filter: grayscale(100%);
+          opacity: 0.6;
+          transition: all 0.3s ease;
+
+          &:hover {
+            filter: grayscale(0);
+            opacity: 1;
+
+            &.normal {
+              span {
+                color: #A0A29F;
+              }
+            }
+
+            &.fighting {
+              span {
+                color: #C44D61;
+              }
+            }
+
+            &.flying {
+              span {
+                color: #A6BBE8;
+              }
+            }
+
+            &.poison {
+              span {
+                color: #AC6ACA;
+              }
+            }
+
+            &.ground {
+              span {
+                color: #CE8056;
+              }
+            }
+
+            &.rock {
+              span {
+                color: #8BCEC1;
+              }
+            }
+
+            &.bug {
+              span {
+                color: #9BBA48;
+              }
+            }
+
+            &.ghost {
+              span {
+                color: #616EB7;
+              }
+            }
+
+            &.steel {
+              span {
+                color: #6594A1;
+              }
+            }
+
+            &.fire {
+              span {
+                color: #F66D6D;
+              }
+            }
+
+            &.water {
+              span {
+                color: #88A3D4;
+              }
+            }
+
+            &.grass {
+              span {
+                color: #73B861;
+              }
+            }
+
+            &.electric {
+              span {
+                color: #EED967;
+              }
+            }
+
+            &.psychic {
+              span {
+                color: #EB8B85;
+              }
+            }
+
+            &.ice {
+              span {
+                color: #8BCEC1;
+              }
+            }
+
+            &.dragon {
+              span {
+                color: #2C6AC1;
+              }
+            }
+
+            &.dark {
+              span {
+                color: #595761;
+              }
+            }
+
+            &.fairy {
+              span {
+                color: #E296E1;
+              }
+            }
+          }
+
+          .icone {
+            margin-right: 2.5rem;
+            width: 2rem;
+            height: 2rem;
+          }
+
+          span {
+            font-weight: 600;
+            font-size: 1.5rem;
+            line-height: 2.2rem;
+            color: #acb9c1;
+            transition: all .3s ease;
+          }
+        }
+      }
+    }
+  }
+
+  .list-pokemons {
+    padding-top: 6.3rem;
+
+    .top {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-weight: 600;
+        font-size: 1.8rem;
+        line-height: 2.7rem;
+        color: #4d5053;
+        margin-left: 0.6rem;
+      }
+    }
+
+    .load {
+      width: 100%;
+      max-width: 19.6rem;
+      height: 4.5rem;
+      background: rgba(63, 93, 179, 0.1);
+      border-radius: 6px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 1.7rem;
+      letter-spacing: -0.01em;
+      color: #3F5DB3;
+      margin: 0 auto;
+      margin-top: 6.8rem;
+      transition: all .3s ease;
+
+      &:hover {
+        background-color: #3F5DB3;
+        color: #FFFFFF;
+      }
+    }
+  }
 `;
