@@ -20,6 +20,7 @@ import iconeAll from "../../public/assets/icone-all.svg";
 
 import { Search } from "../components/Search";
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { api } from "./services/api";
 import { CardPokemon } from "../components/CardPokemon";
 import { Modal } from "../components/Modal";
@@ -37,6 +38,46 @@ interface PokemonProps {
     damage_relations: any;
     pokemons: any;
   };
+=======
+import { Pokemons } from "../components/Pokemons";
+import { api } from "./services/api";
+import { CardPokemon } from "../components/CardPokemon";
+
+interface PokemonProps {
+  id: number;
+  name: string;
+  abilities: [
+    {
+      ability: {
+        name: string;
+      };
+    }
+  ];
+  sprites: {
+    other: {
+      dream_world: {
+        front_default: string;
+      };
+    };
+  };
+  stats: [
+    {
+      base_stat: number;
+      stat: {
+        name: string;
+      };
+    }
+  ];
+  height: number;
+  weight: number;
+  types: [
+    {
+      type: {
+        name: string;
+      };
+    }
+  ];
+>>>>>>> 9d75fe357a56b585bde47c8805d7badd4a5458ea
 }
 
 interface TypesProps {
@@ -65,6 +106,7 @@ export default function Home() {
   const [types, setTypes] = useState<TypesProps[]>([]);
   const [text, setText] = useState("");
   const [search, setSearch] = useState<any>([]);
+<<<<<<< HEAD
   const [currentPage, setCurrentPage] = useState(0);
   const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
   const [modal, setModal] = useState(false);
@@ -111,14 +153,24 @@ export default function Home() {
 
     setPokemons(resultado);
   }
+=======
+  const [results, setResults] = useState(false);
+  const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
+  const [types, setTypes] = useState<TypesProps[]>([]);
+  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
+>>>>>>> 9d75fe357a56b585bde47c8805d7badd4a5458ea
 
   function handleSearch() {
     api.get(`pokemon/${text.toLocaleLowerCase()}`).then((response) => {
+      setResults(true);
       setSearch(response.data);
       setResults(true);
     });
   }
 
+<<<<<<< HEAD
   async function handleLoadMore() {
     const listPokemons: any = [];
 
@@ -195,6 +247,100 @@ export default function Home() {
       }, 1000);
     });
   }, []);
+=======
+  // async function handleTypes(name: any) {
+  //   const resultado: any = [];
+  //   const response = await api.get(name);
+
+  //   const types: any = await Promise.all(
+  //     response.data.pokemon.map((pokemon: any) => api.get(pokemon.pokemon.url))
+  //   );
+
+  //   for (let i = 0; i < response.data.pokemon.length; i++) {
+  //     resultado.push(types[i].data);
+  //   }
+
+  //   setCount(response.data.pokemon.length);
+
+  //   setPokemons(resultado);
+  // }
+
+  // async function handleAllPokemons() {
+  //   const resultado: any = [];
+
+  //   const response = await api.get(`pokemon?limit=${currentPage}&offset=0`);
+
+  //   const results: any = await Promise.all(
+  //     response.data.results.map((pokemons: any) => api.get(pokemons.url))
+  //   );
+
+  //   for (let i = 0; i < response.data.results.length; i++) {
+  //     resultado.push(results[i].data);
+  //   }
+
+  //   setCount(response.data.count);
+
+  //   setCurrentPage(currentPage + 9);
+
+  //   setPokemons(resultado);
+  // }
+
+  // async function handleLoadMore() {
+  //   const listPokemons: any = [];
+
+  //   const response = await api.get(`pokemon?offset=0&limit=${currentPage}`);
+
+  //   const resultado: any = await Promise.all(
+  //     response.data.results.map((item: any) => api.get(item.url))
+  //   );
+
+  //   for (let i = 0; i < response.data.results.length; i++) {
+  //     listPokemons.push(resultado[i].data);
+  //   }
+
+  //   setCurrentPage(currentPage + 9);
+
+  //   setLoadmore(resultado);
+
+  //   setPokemons(listPokemons);
+  // }
+
+  // useEffect(() => {
+  //   api.get("/pokemon").then((response) => setCount(response.data.count));
+
+  //   // Requisição para listar os pokémons
+  //   const resultadoPokemon: any = [];
+  //   api.get(`pokemon?limit=9&offset=0`).then((response) => {
+  //     response.data.results.map((item: any) =>
+  //       api.get(item.url).then((resp) => {
+  //         resultadoPokemon.push(resp.data);
+  //       })
+  //     );
+
+  //     setCurrentPage(currentPage + 9);
+
+  //     setTimeout(() => {
+  //       setPokemons(resultadoPokemon);
+  //     }, 1000);
+  //   });
+
+  //   // Requisição para listar os tipos de pokémons
+  //   const resultadoTypes: any = [];
+  //   api.get("/type").then((response) => {
+  //     response.data.results.map((item: any) =>
+  //       api.get(item.url).then((resp) => {
+  //         if (resp.data.name != "shadow" && resp.data.name != "unknown") {
+  //           resultadoTypes.push(resp.data);
+  //         }
+  //       })
+  //     );
+  //   });
+
+  //   setTimeout(() => {
+  //     setTypes(resultadoTypes);
+  //   }, 1000);
+  // }, []);
+>>>>>>> 9d75fe357a56b585bde47c8805d7badd4a5458ea
 
   return (
     <>
