@@ -18,6 +18,8 @@ interface ModalProps {
     damage_relations: any;
     pokemons: any;
   };
+
+  // weakness: any;
 }
 
 export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
@@ -72,8 +74,8 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
               {pokemon.id < 10
                 ? "#00" + pokemon.id
                 : pokemon.id < 100
-                ? "#0" + pokemon.id
-                : "#" + pokemon.id}
+                  ? "#0" + pokemon.id
+                  : "#" + pokemon.id}
             </span>
           </div>
 
@@ -120,41 +122,39 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
 
             <ul>
               {/* <li>
-                {pokemon.damage_relations.double_damage_from.length > 0 && (
+                <small className={`tag ${pokemon.types[0].type.name}`}>
+                  {weakness.damage_relations.double_damage_from[0].name}
+                </small>
+              </li> */}
+
+              {/* <li>
+                {weakness.damage_relations.double_damage_from.length > 1 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {pokemon.damage_relations.double_damage_from[0].name}
+                    {weakness.damage_relations.double_damage_from[1].name}
                   </small>
                 )}
               </li> */}
 
               {/* <li>
-                {pokemon.double_damage_from.length > 1 && (
+                {weakness.damage_relations.double_damage_from.length > 2 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {pokemon.double_damage_from[1].name}
+                    {weakness.damage_relations.double_damage_from[2].name}
                   </small>
                 )}
               </li> */}
 
               {/* <li>
-                {pokemon.double_damage_from.length > 2 && (
+                {weakness.damage_relations.double_damage_from.length > 3 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {pokemon.double_damage_from[2].name}
+                    {weakness.damage_relations.double_damage_from[3].name}
                   </small>
                 )}
               </li> */}
 
               {/* <li>
-                {pokemon.double_damage_from.length > 3 && (
+                {weakness.damage_relations.double_damage_from.length > 4 && (
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {pokemon.double_damage_from[3].name}
-                  </small>
-                )}
-              </li> */}
-
-              {/* <li>
-                {pokemon.double_damage_from.length > 4 && (
-                  <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {pokemon.double_damage_from[4].name}
+                    {weakness.damage_relations.double_damage_from[4].name}
                   </small>
                 )}
               </li> */}

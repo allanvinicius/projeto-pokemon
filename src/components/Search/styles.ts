@@ -78,4 +78,24 @@ export const SectionSearch = styled.section`
       }
     }
   }
+
+  @media(max-width: 600px) {
+    padding-bottom: 4rem;
+    
+    .container {
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    h2 {
+      max-width: 100%;
+      font-size: 2.8rem;
+      text-align: center;
+    }
+
+    .search {
+      margin-top: 3.5rem;
+      max-width: 100%;
+    }
+  }
 `;

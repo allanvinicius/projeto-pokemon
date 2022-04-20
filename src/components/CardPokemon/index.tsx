@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
-import { Modal } from "../Modal";
 import { Card } from "./styles";
 
 interface PokemonProps {
@@ -46,6 +44,7 @@ export function CardPokemon({ pokemon, handleOpenModal }: PokemonProps) {
                     ? "#0" + pokemon.id
                     : "#" + pokemon.id}
               </span>
+              
               <strong>
                 {pokemon.name
                   ? pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)

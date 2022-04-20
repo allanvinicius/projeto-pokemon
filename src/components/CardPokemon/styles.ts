@@ -210,4 +210,18 @@ export const Card = styled.div`
       }
     }
   }
+
+  @media(max-width: 990px) {
+    .btn-pokemon {
+      .image {
+        width: 100%;
+      }
+
+      .desc {
+        .left-desc {
+          max-width: 100%;
+        }
+      }
+    }
+  }
 `;

@@ -1,204 +1,9 @@
 import styled from "styled-components";
 
-export const SectionBanner = styled.section`
-  position: relative;
-  width: 100%;
-  height: 99.4rem;
-
-  .swiper {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    .swiper-slide {
-      position: relative;
-
-      &::after {
-        content: "";
-        position: absolute;
-        background-color: #eff3f6;
-        width: 100%;
-        height: 28.8rem;
-        left: 0;
-        bottom: 0;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      &.blue {
-        .area-slide {
-          background: url("/assets/bg-blue.svg") no-repeat center center;
-          background-size: cover;
-
-          .texto {
-            .image {
-              .poke {
-                top: 5% !important;
-              }
-            }
-          }
-
-          .explore {
-            .left {
-              .icon {
-                background-color: rgba(175, 192, 227, 0.3);
-              }
-            }
-          }
-        }
-      }
-
-      .area-slide {
-        padding-top: 14.7rem;
-        height: 70.6rem;
-        background: url("/assets/bg-red.svg") no-repeat center center;
-        background-size: cover;
-        position: relative;
-
-        .container {
-          position: relative;
-          height: 100%;
-        }
-
-        .texto {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          position: relative;
-          z-index: 1;
-
-          .tag {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
-            border-radius: 244px;
-            width: 100%;
-            max-width: 12.1rem;
-            height: 3.4rem;
-
-            .icon {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 2.6rem;
-              height: 2.6rem;
-              background-color: rgba(194, 0, 1, 0.2);
-              border-radius: 50%;
-              margin-right: 0.8rem;
-            }
-
-            span {
-              font-weight: 600;
-              font-size: 1.5rem;
-              line-height: 2.2rem;
-              color: #c20001;
-            }
-          }
-
-          h1 {
-            font-weight: 700;
-            font-size: 6.4rem;
-            line-height: 7.8rem;
-            text-align: center;
-            letter-spacing: -0.01em;
-
-            color: #ffffff;
-            margin-top: 2.9rem;
-          }
-
-          p {
-            font-weight: 500;
-            font-size: 1.8rem;
-            line-height: 2.7rem;
-            text-align: center;
-
-            color: #ffffff;
-            margin-top: 0.8rem;
-          }
-
-          .image {
-            position: relative;
-            width: 100%;
-            max-width: 79.8rem;
-            margin: 0 auto;
-            margin-top: 10rem;
-
-            .luzes {
-              position: absolute;
-              top: 18px;
-              right: 50%;
-              z-index: 2;
-              margin-right: -8.5rem;
-            }
-
-            .poke {
-              top: 25% !important;
-              left: 13px !important;
-            }
-          }
-        }
-
-        .explore {
-          position: absolute;
-          bottom: 8rem;
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-
-          .left {
-            display: flex;
-            align-items: center;
-            transform: rotate(-90deg);
-            position: relative;
-            top: -2rem;
-            left: -4rem;
-
-            .icon {
-              width: 4rem;
-              height: 4rem;
-              background-color: #c90c0c;
-              border-radius: 50%;
-
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              transform: rotate(90deg);
-            }
-
-            small {
-              font-weight: 500;
-              font-size: 1.3rem;
-              line-height: 2rem;
-              color: #ffffff;
-              margin-left: 3rem;
-            }
-          }
-
-          .pagination {
-            position: absolute;
-            z-index: 9;
-            right: 0;
-            left: initial;
-            width: fit-content;
-            bottom: 7.7rem;
-
-            .swiper-pagination-bullet {
-              background: #ffff;
-              width: 2rem;
-              height: 2rem;
-              border-radius: 50%;
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 export const SectionPokemons = styled.section`
   padding-bottom: 8.8rem;
+  overflow: hidden;
 
   .container {
     display: flex;
@@ -395,6 +200,181 @@ export const SectionPokemons = styled.section`
       }
     }
 
+    .select-custom {
+      position: relative;
+      display: none;
+      width: 100%;
+      margin-top: 3.2rem;
+      margin-bottom: 4rem;
+
+      .btn-select {
+        width: 100%;
+        height: 5.6rem;
+        border: 1px solid #A0AFBA;
+        border-radius: 1rem;
+
+        display: flex;
+        align-items: center;
+        padding: 0 2.2rem;
+        background: url('/assets/arrow-down-select.svg') no-repeat right 21px center;
+
+        span {
+          color: #7A7D80;
+          opacity: 0.6;
+          margin-right: 0.4rem;
+          font-weight: 500;
+        }
+
+        strong {
+          color: #7A7D80;
+          font-weight: 600;
+        }
+      }
+
+      .drop-types {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 5.6rem;
+        left: 0;
+        width: 100%;
+        overflow-y: auto;
+        height: 22.3rem;
+        border: 1px solid #A0AFBA;
+        border-top: 0;
+        padding: 2.1rem;
+        background-color: #FFF;
+        border-radius: 0 0 0.5rem 0.5rem;
+        z-index: 2;
+
+        li {
+          margin-bottom: 2rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .btn-type {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            .icone {
+              margin-right: 2rem;
+            }
+
+            &.normal {
+              span {
+                color: #a0a29f;
+              }
+            }
+
+            &.fighting {
+              span {
+                color: #c44d61;
+              }
+            }
+
+            &.flying {
+              span {
+                color: #a6bbe8;
+              }
+            }
+
+            &.poison {
+              span {
+                color: #ac6aca;
+              }
+            }
+
+            &.ground {
+              span {
+                color: #ce8056;
+              }
+            }
+
+            &.rock {
+              span {
+                color: #8bcec1;
+              }
+            }
+
+            &.bug {
+              span {
+                color: #9bba48;
+              }
+            }
+
+            &.ghost {
+              span {
+                color: #616eb7;
+              }
+            }
+
+            &.steel {
+              span {
+                color: #6594a1;
+              }
+            }
+
+            &.fire {
+              span {
+                color: #f66d6d;
+              }
+            }
+
+            &.water {
+              span {
+                color: #88a3d4;
+              }
+            }
+
+            &.grass {
+              span {
+                color: #73b861;
+              }
+            }
+
+            &.electric {
+              span {
+                color: #eed967;
+              }
+            }
+
+            &.psychic {
+              span {
+                color: #eb8b85;
+              }
+            }
+
+            &.ice {
+              span {
+                color: #8bcec1;
+              }
+            }
+
+            &.dragon {
+              span {
+                color: #2c6ac1;
+              }
+            }
+
+            &.dark {
+              span {
+                color: #595761;
+              }
+            }
+
+            &.fairy {
+              span {
+                color: #e296e1;
+              }
+            }
+          }
+        }
+      }
+    }
+
     .grid-pokemons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -428,6 +408,65 @@ export const SectionPokemons = styled.section`
       &:hover {
         background-color: #3f5db3;
         color: #ffffff;
+      }
+    }
+  }
+
+  @media(max-width: 1200px) {
+    .list-types {
+      max-width: 19rem;
+    }
+  }
+
+  @media(max-width: 1050px) {
+    .list-types {
+      max-width: 16rem;
+    }
+
+    .list-pokemons {
+      padding-left: 4rem;
+
+      .grid-pokemons {
+        column-gap: 2rem;
+        row-gap: 2rem;
+      }
+    }
+  }
+
+  @media(max-width: 990px) {
+    .list-types {
+      display: none;
+    }
+
+    .list-pokemons {
+      padding-left: 0;
+      max-width: 100%;
+
+      .top {
+        justify-content: center;
+      }
+
+      .select-custom {
+        display: block;
+      }
+    }
+  }
+
+  @media(max-width: 600px) {
+    padding-bottom: 4rem;
+
+    .list-pokemons {
+      padding-top: 4rem;
+
+      .grid-pokemons {
+        grid-template-columns: 1fr;
+        margin-top: 4rem;
+        max-width: 29rem;
+        margin: 0 auto;
+      }
+
+      .load {
+        margin-top: 4rem;
       }
     }
   }

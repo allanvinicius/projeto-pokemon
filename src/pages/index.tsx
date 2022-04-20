@@ -1,19 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
-import { SectionBanner, SectionPokemons } from "./styles";
+import { SectionPokemons } from "./styles";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-
-// import required modules
-import { Navigation, EffectFade, Autoplay, Pagination } from "swiper";
-
-import pokeballRed from "../../public/assets/img-pokeball.png";
-import pokeballBlue from "../../public/assets/img-pokeball-02.png";
-import luzes from "../../public/assets/luzes.svg";
-import arrow from "../../public/assets/arrow-down.svg";
 import icone from "../../public/assets/icone-pokeball.svg";
 import iconeAll from "../../public/assets/icone-all.svg";
 
@@ -22,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { api } from "./services/api";
 import { CardPokemon } from "../components/CardPokemon";
 import { Modal } from "../components/Modal";
+import { Slide } from "../components/Slide";
 
 interface PokemonProps {
   pokemon: {
@@ -69,6 +58,9 @@ export default function Home() {
   const [modal, setModal] = useState(false);
   const [detalhes, setDetalhes] = useState<any>();
   const [results, setResults] = useState(false);
+  const [drop, setDrop] = useState(false);
+
+  const [fraquezas, setFraquezas] = useState<any>([]);
 
   async function handleTypes(name: any) {
     const resultado: any = [];
@@ -113,7 +105,6 @@ export default function Home() {
 
   function handleSearch() {
     api.get(`pokemon/${text.toLocaleLowerCase()}`).then((response) => {
-      setResults(true);
       setSearch(response.data);
       setResults(true);
     });
@@ -138,26 +129,32 @@ export default function Home() {
   }
 
   function handleOpenModal(id: number) {
-    setModal(true);
     const pokemon = pokemons.find((poke: any) => poke.id === id);
 
-    // const type = types.find(type => type.id === id);
+    api.get("/pokemon").then((response) => {
+      response.data.results.map((item: any) => {
+        api.get(item.url).then(resp => {
+          resp.data.types.map(({ type }: any) => {
+            api.get(type.url).then(res => {
+              const elem = res.data;
 
-    // api.get(`type/`).then((response) => {
-    //   response.data.results.map((item:any) => {
-    //     api.get(item.url).then(resp => {
-    //       const elem = resp.data;
+              setFraquezas(elem);
+            })
+          });
+        })
+      });
+    });
 
-    //       console.log(elem);
-    //     })
-    //   })
-    // });
-
+    setModal(true);
     setDetalhes(pokemon);
   }
 
   function handleCloseModal() {
     setModal(false);
+  }
+
+  function handleDrop() {
+    setDrop(true);
   }
 
   useEffect(() => {
@@ -202,112 +199,7 @@ export default function Home() {
         <title>Pokémon</title>
       </Head>
 
-      <SectionBanner>
-        <Swiper
-          navigation={true}
-          pagination={{
-            clickable: false,
-            el: ".slide-banner .pagination",
-          }}
-          autoplay={{
-            delay: 4e3,
-            disableOnInteraction: false,
-          }}
-          modules={[Navigation, EffectFade, Autoplay, Pagination]}
-          effect={"fade"}
-          className="slide-banner"
-        >
-          <SwiperSlide>
-            <div className="area-slide">
-              <div className="container">
-                <div className="texto">
-                  <div className="tag">
-                    <div className="icon">🎒</div>
-                    <span>pokedex</span>
-                  </div>
-
-                  <h1>Who is that Pokémon?</h1>
-
-                  <p>
-                    The perfect guide for those who want to hunt Pokémons around
-                    the world
-                  </p>
-
-                  <div className="image">
-                    <div className="luzes">
-                      <Image src={luzes} title="luzes" alt="luzes" />
-                    </div>
-
-                    <Image
-                      src={pokeballRed}
-                      className="poke"
-                      title="pokeball"
-                      alt="pokeball"
-                    />
-                  </div>
-                </div>
-
-                <div className="explore">
-                  <div className="left">
-                    <div className="icon">
-                      <Image src={arrow} alt="arrow" />
-                    </div>
-
-                    <small>explore</small>
-                  </div>
-
-                  <div className="pagination"></div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide className="blue">
-            <div className="area-slide">
-              <div className="container">
-                <div className="texto">
-                  <div className="tag">
-                    <div className="icon">🎒</div>
-                    <span>pokedex</span>
-                  </div>
-
-                  <h1>Catch them all!</h1>
-
-                  <p>
-                    The perfect guide for those who want to hunt Pokémons around
-                    the world
-                  </p>
-
-                  <div className="image">
-                    <div className="luzes">
-                      <Image src={luzes} title="luzes" alt="luzes" />
-                    </div>
-
-                    <Image
-                      src={pokeballBlue}
-                      className="poke"
-                      title="pokeball"
-                      alt="pokeball"
-                    />
-                  </div>
-                </div>
-
-                <div className="explore">
-                  <div className="left">
-                    <div className="icon">
-                      <Image src={arrow} alt="arrow" />
-                    </div>
-
-                    <small>explore</small>
-                  </div>
-
-                  <div className="pagination"></div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </SectionBanner>
+      <Slide />
 
       <Search
         value={text}
@@ -354,23 +246,54 @@ export default function Home() {
 
           <div className="list-pokemons">
             {!results && (
-              <div className="top">
-                <Image src={icone} alt="icone" />
-                <span>{count} Pokémons</span>
-              </div>
-            )}
+              <>
+                <div className="top">
+                  <Image src={icone} alt="icone" />
+                  <span>{count} Pokémons</span>
+                </div>
 
-            {!results && (
-              <div className="grid-pokemons">
-                {pokemons &&
-                  pokemons.map((item: any, index: number) => (
-                    <CardPokemon
-                      key={index}
-                      pokemon={item}
-                      handleOpenModal={handleOpenModal}
-                    />
-                  ))}
-              </div>
+                <div className="select-custom">
+                  <button className="btn-select" onClick={handleDrop}>
+                    <span>Show:</span>
+                    <strong>All</strong>
+                  </button>
+
+                  <ul className="drop-types">
+                    {types.map((type: any, index) => (
+                      <li key={index}>
+                        <button
+                          className={`btn-type ${type.name}`}
+                          onClick={() => handleTypes(`/type/${index + 1}`)}
+                        >
+                          <div className="icone">
+                            <Image
+                              src={`/assets/${type.name.concat(".svg")}`}
+                              alt={type.name}
+                              width={15}
+                              height={15}
+                            />
+                          </div>
+
+                          <span>
+                            {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="grid-pokemons">
+                  {pokemons &&
+                    pokemons.map((item: any, index: number) => (
+                      <CardPokemon
+                        key={index}
+                        pokemon={item}
+                        handleOpenModal={handleOpenModal}
+                      />
+                    ))}
+                </div>
+              </>
             )}
 
             {results && (
@@ -378,6 +301,37 @@ export default function Home() {
                 <div className="top">
                   <Image src={icone} alt="icone" />
                   <span>1 Pokémon</span>
+                </div>
+
+                <div className="select-custom">
+                  <button className="btn-select" onClick={handleDrop}>
+                    <span>Show:</span>
+                    <strong>All</strong>
+                  </button>
+
+                  <ul className="drop-types">
+                    {types.map((type: any, index) => (
+                      <li key={index}>
+                        <button
+                          className={`btn-type ${type.name}`}
+                          onClick={() => handleTypes(`/type/${index + 1}`)}
+                        >
+                          <div className="icone">
+                            <Image
+                              src={`/assets/${type.name.concat(".svg")}`}
+                              alt={type.name}
+                              width={15}
+                              height={15}
+                            />
+                          </div>
+
+                          <span>
+                            {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 <div className="grid-pokemons">

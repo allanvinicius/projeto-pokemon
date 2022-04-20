@@ -29,4 +29,29 @@ export const FooterSection = styled.footer`
       color: rgba(255, 255, 255, 0.8);
     }
   }
+
+  @media(max-width: 600px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+
+    .container {
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .left {
+      max-width: 100%;
+      margin-bottom: 2rem;
+
+      strong {
+        display: block;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+  }
 `;

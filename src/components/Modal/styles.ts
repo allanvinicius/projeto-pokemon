@@ -456,4 +456,164 @@ export const BoxModal = styled.div<Props>`
             }
         }
     }
+
+    @media(max-width: 600px) {
+        .box {
+            max-width: 52rem;
+            flex-direction: column;
+            height: 86%;
+
+            .left {
+                max-width: 100%;
+                height: 12.5rem;
+                border-radius: 16px 16px 0px 0px;
+
+                .icone {
+                    position: absolute;
+                    top: 1.5rem;
+                    margin-top: 0;
+                }
+
+                .pokemon {
+                    right: 0;
+                    bottom: -4rem;
+                    margin-top: 0;
+                    max-width: 10rem;
+                    margin: 0 auto;
+                }
+                
+                &.grass {
+                    background-size: cover;
+                }
+
+                &.normal {
+                    background-size: cover;
+                }
+
+                &.fighting {
+                    background-size: cover;
+                }
+
+                &.flying {
+                    background-size: cover;
+                }
+
+                &.poison {
+                    background-size: cover;
+                }
+
+                &.ground {
+                    background-size: cover;
+                }
+
+                &.rock {
+                    background-size: cover;
+                }
+
+                &.bug {
+                    background-size: cover;
+                }
+
+                &.ghost {
+                    background-size: cover;
+                }
+
+                &.steel {
+                    background-size: cover;
+                }
+
+                &.fire {
+                    background-size: cover;
+                }
+
+                &.water {
+                    background-size: cover;
+                }
+
+                &.electric {
+                    background-size: cover;
+                }
+
+                &.psychic {
+                    background-size: cover;
+                }
+
+                &.ice {
+                    background-size: cover;
+                }
+
+                &.dragon {
+                    background-size: cover;
+                }
+
+                &.dark {
+                    background-size: cover;
+                }
+
+                &.fairy {
+                    background-size: cover;
+                }
+            }
+
+            .right {
+                max-width: 100%;
+
+                .info-pokemon {
+                    justify-content: center;
+
+                    h2 {
+                        font-size: 2.4rem;
+                    }
+
+                    span {
+                        font-size: 1.4rem;
+                    }
+                }
+
+                .info-types {
+                    justify-content: center;
+                }
+
+                .info-habilidades {
+                    justify-content: center;
+                }
+
+                .info-fraquezas {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+
+                .info-stats {
+                    strong {
+                        display: block;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    @media(max-width: 480px) {
+        .box {
+            max-width: 44rem;
+
+            .right {
+                padding-left: 3.4rem;
+                padding-right: 3.4rem;
+            }
+        }
+    }
+
+    @media(max-width: 375px) {
+        .box {
+            max-width: 37.5rem;
+            
+            .right {
+                padding-right: 1.4rem;
+                padding-left: 1.4rem;
+            }
+        }
+    }
 `;
