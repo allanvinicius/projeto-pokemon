@@ -36,7 +36,7 @@ interface PokemonProps {
     types: any;
     damage_relations: any;
     pokemons: any;
-  }
+  };
 }
 
 interface TypesProps {
@@ -83,6 +83,8 @@ export default function Home() {
       resultado.push(types[i].data);
     }
 
+    setResults(false);
+
     setCount(response.data.pokemon.length);
 
     setPokemons(resultado);
@@ -100,6 +102,8 @@ export default function Home() {
     for (let i = 0; i < response.data.results.length; i++) {
       resultado.push(results[i].data);
     }
+
+    setResults(false);
 
     setCount(response.data.count);
 
@@ -349,34 +353,48 @@ export default function Home() {
           </div>
 
           <div className="list-pokemons">
-            <div className="top">
-              <Image src={icone} alt="icone" />
-              <span>{count} Pokémons</span>
-            </div>
+            {!results && (
+              <div className="top">
+                <Image src={icone} alt="icone" />
+                <span>{count} Pokémons</span>
+              </div>
+            )}
 
-            {pokemons && pokemons.map((item: any, index: number) => (
-              <CardPokemon
-                key={index}
-                pokemon={item}
-                handleOpenModal={handleOpenModal}
-              />
-            ))}
+            {!results && (
+              <div className="grid-pokemons">
+                {pokemons &&
+                  pokemons.map((item: any, index: number) => (
+                    <CardPokemon
+                      key={index}
+                      pokemon={item}
+                      handleOpenModal={handleOpenModal}
+                    />
+                  ))}
+              </div>
+            )}
 
-
-            {/* {results && (
+            {results && (
               <>
                 <div className="top">
                   <Image src={icone} alt="icone" />
                   <span>1 Pokémon</span>
                 </div>
 
-                <CardPokemon key={search} pokemon={search} handleOpenModal={handleOpenModal} />
+                <div className="grid-pokemons">
+                  <CardPokemon
+                    key={search}
+                    pokemon={search}
+                    handleOpenModal={handleOpenModal}
+                  />
+                </div>
               </>
-            )} */}
+            )}
 
-            <button onClick={handleLoadMore} className="load">
-              Load more Pokémons
-            </button>
+            {!results && (
+              <button onClick={handleLoadMore} className="load">
+                Load more Pokémons
+              </button>
+            )}
           </div>
 
           {modal && (

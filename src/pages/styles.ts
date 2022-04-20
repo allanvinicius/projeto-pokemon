@@ -207,7 +207,7 @@ export const SectionPokemons = styled.section`
   }
 
   .list-types {
-    border-right: 1px solid #EFF3F6;
+    border-right: 1px solid #eff3f6;
     width: 100%;
     max-width: 25.9rem;
     padding-top: 7rem;
@@ -227,7 +227,7 @@ export const SectionPokemons = styled.section`
         font-weight: 600;
         font-size: 15px;
         line-height: 2.2rem;
-        color: #3E75C3;
+        color: #3e75c3;
       }
     }
 
@@ -252,97 +252,97 @@ export const SectionPokemons = styled.section`
 
             &.normal {
               span {
-                color: #A0A29F;
+                color: #a0a29f;
               }
             }
 
             &.fighting {
               span {
-                color: #C44D61;
+                color: #c44d61;
               }
             }
 
             &.flying {
               span {
-                color: #A6BBE8;
+                color: #a6bbe8;
               }
             }
 
             &.poison {
               span {
-                color: #AC6ACA;
+                color: #ac6aca;
               }
             }
 
             &.ground {
               span {
-                color: #CE8056;
+                color: #ce8056;
               }
             }
 
             &.rock {
               span {
-                color: #8BCEC1;
+                color: #8bcec1;
               }
             }
 
             &.bug {
               span {
-                color: #9BBA48;
+                color: #9bba48;
               }
             }
 
             &.ghost {
               span {
-                color: #616EB7;
+                color: #616eb7;
               }
             }
 
             &.steel {
               span {
-                color: #6594A1;
+                color: #6594a1;
               }
             }
 
             &.fire {
               span {
-                color: #F66D6D;
+                color: #f66d6d;
               }
             }
 
             &.water {
               span {
-                color: #88A3D4;
+                color: #88a3d4;
               }
             }
 
             &.grass {
               span {
-                color: #73B861;
+                color: #73b861;
               }
             }
 
             &.electric {
               span {
-                color: #EED967;
+                color: #eed967;
               }
             }
 
             &.psychic {
               span {
-                color: #EB8B85;
+                color: #eb8b85;
               }
             }
 
             &.ice {
               span {
-                color: #8BCEC1;
+                color: #8bcec1;
               }
             }
 
             &.dragon {
               span {
-                color: #2C6AC1;
+                color: #2c6ac1;
               }
             }
 
@@ -354,7 +354,7 @@ export const SectionPokemons = styled.section`
 
             &.fairy {
               span {
-                color: #E296E1;
+                color: #e296e1;
               }
             }
           }
@@ -370,7 +370,7 @@ export const SectionPokemons = styled.section`
             font-size: 1.5rem;
             line-height: 2.2rem;
             color: #acb9c1;
-            transition: all .3s ease;
+            transition: all 0.3s ease;
           }
         }
       }
@@ -379,6 +379,8 @@ export const SectionPokemons = styled.section`
 
   .list-pokemons {
     padding-top: 6.3rem;
+    width: 100%;
+    max-width: 90.4rem;
 
     .top {
       display: flex;
@@ -393,6 +395,14 @@ export const SectionPokemons = styled.section`
       }
     }
 
+    .grid-pokemons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 3.2rem;
+      row-gap: 3.2rem;
+      margin-top: 6.3rem;
+    }
+
     .load {
       width: 100%;
       max-width: 19.6rem;
@@ -404,20 +414,20 @@ export const SectionPokemons = styled.section`
       align-items: center;
       justify-content: center;
 
-      font-family: 'Montserrat';
+      font-family: "Montserrat";
       font-style: normal;
       font-weight: 600;
       font-size: 1.4rem;
       line-height: 1.7rem;
       letter-spacing: -0.01em;
-      color: #3F5DB3;
+      color: #3f5db3;
       margin: 0 auto;
       margin-top: 6.8rem;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       &:hover {
-        background-color: #3F5DB3;
-        color: #FFFFFF;
+        background-color: #3f5db3;
+        color: #ffffff;
       }
     }
   }
