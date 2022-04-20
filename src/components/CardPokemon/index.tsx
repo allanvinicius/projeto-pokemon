@@ -18,37 +18,7 @@ interface PokemonProps {
   handleOpenModal: any;
 }
 
-export function CardPokemon({ pokemon }: PokemonProps) {
-  const [modal, setModal] = useState(false);
-  const [detalhes, setDetalhes] = useState<any>();
-  const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
-
-  function handleOpenModal(id: number) {
-    setModal(true);
-    const pokemon = pokemons.find((poke: any) => poke.pokemon.id === id);
-
-    // const type = types.find(type => type.id === id);
-
-    // api.get(`type/`).then((response) => {
-    //   response.data.results.map((pokemon:any) => {
-    //     api.get(item.url).then(resp => {
-    //       const elem = resp.data.damage_relations.double_damage_from;
-
-    //       setDetalhes(elem);
-
-    //       console.log(detalhes);
-    //     })
-    //   })
-    // });
-
-    setDetalhes(pokemon);
-    // console.log(type);
-  }
-
-  function handleCloseModal() {
-    setModal(false);
-  }
-
+export function CardPokemon({ pokemon, handleOpenModal }: PokemonProps) {
   return (
     <>
       <Card>
@@ -94,15 +64,6 @@ export function CardPokemon({ pokemon }: PokemonProps) {
           </div>
         </button>
       </Card>
-
-      {modal && (
-        <Modal
-          key={detalhes}
-          isOpen={modal}
-          pokemon={detalhes}
-          onRequestClose={handleCloseModal}
-        />
-      )}
     </>
   );
 }
