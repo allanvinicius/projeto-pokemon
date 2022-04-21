@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Navigation, EffectFade, Autoplay, Pagination } from "swiper";
 
-import pokeballRed from "../../../public/assets/img-pokeball.png";
+import pokeballRed from "../../../public/assets/img-pokeball.svg";
 import pokeballBlue from "../../../public/assets/img-pokeball-02.png";
 import luzes from "../../../public/assets/luzes.svg";
 import arrow from "../../../public/assets/arrow-down.svg";
@@ -23,7 +23,7 @@ export function Slide() {
         navigation={true}
         pagination={true}
         autoplay={{
-          delay: 4e3,
+          delay: 4500,
           disableOnInteraction: false,
         }}
         modules={[Navigation, EffectFade, Autoplay, Pagination]}

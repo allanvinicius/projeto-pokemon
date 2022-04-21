@@ -15,7 +15,7 @@ interface ModalProps {
     height: number;
     weight: number;
     types: any;
-    damage_relations: any;
+    weakness: Array<any>;
     pokemons: any;
   };
 
@@ -121,43 +121,13 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
             <strong>Weaknesses</strong>
 
             <ul>
-              {/* <li>
-                <small className={`tag ${pokemon.types[0].type.name}`}>
-                  {weakness.damage_relations.double_damage_from[0].name}
-                </small>
-              </li> */}
-
-              {/* <li>
-                {weakness.damage_relations.double_damage_from.length > 1 && (
+              {/* {pokemon.weakness && pokemon.weakness.map((item, index) => (
+                <li key={index}>
                   <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {weakness.damage_relations.double_damage_from[1].name}
+                    {item.damage_relations_double_damage_from[0].name}
                   </small>
-                )}
-              </li> */}
-
-              {/* <li>
-                {weakness.damage_relations.double_damage_from.length > 2 && (
-                  <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {weakness.damage_relations.double_damage_from[2].name}
-                  </small>
-                )}
-              </li> */}
-
-              {/* <li>
-                {weakness.damage_relations.double_damage_from.length > 3 && (
-                  <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {weakness.damage_relations.double_damage_from[3].name}
-                  </small>
-                )}
-              </li> */}
-
-              {/* <li>
-                {weakness.damage_relations.double_damage_from.length > 4 && (
-                  <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {weakness.damage_relations.double_damage_from[4].name}
-                  </small>
-                )}
-              </li> */}
+                </li>
+              ))} */}
             </ul>
           </div>
 

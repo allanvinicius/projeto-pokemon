@@ -27,7 +27,7 @@ export function CardPokemon({ pokemon, handleOpenModal }: PokemonProps) {
           <div className="image">
             {pokemon.sprites.other.dream_world.front_default && (
               <Image
-                src={pokemon.sprites.other.dream_world.front_default}
+                src={pokemon.sprites.other.dream_world.front_default || pokemon.sprites.front_default}
                 alt="image"
                 width={110}
                 height={110}

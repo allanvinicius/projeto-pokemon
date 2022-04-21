@@ -14,7 +14,7 @@ export const BoxModal = styled.div<Props>`
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: ${(props) => (props.isOpen ? 'initial' : 'none')};
+    pointer-events: ${(props) => (props.isOpen ? 'all' : 'none')};
 
     .overlay {
         position: fixed;
@@ -32,7 +32,7 @@ export const BoxModal = styled.div<Props>`
         background-color: #FFFFFF;
         box-shadow: 0px 10px 40px rgba(13, 12, 71, 0.05);
         visibility: ${(props) => (props.isOpen ? 'initial' : 'hidden')};
-        pointer-events: ${(props) => (props.isOpen ? 'initial' : 'none')};
+        pointer-events: ${(props) => (props.isOpen ? 'all' : 'none')};
         border-radius: 16px;
         top: 0;
         left: 0;

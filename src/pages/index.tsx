@@ -47,7 +47,11 @@ interface TypesProps {
   ];
 }
 
-export default function Home() {
+interface SelectProps {
+  isOpen: boolean;
+}
+
+export default function Home({ isOpen }: SelectProps) {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<any>([]);
   const [types, setTypes] = useState<TypesProps[]>([]);
@@ -131,19 +135,19 @@ export default function Home() {
   function handleOpenModal(id: number) {
     const pokemon = pokemons.find((poke: any) => poke.id === id);
 
-    api.get("/pokemon").then((response) => {
-      response.data.results.map((item: any) => {
-        api.get(item.url).then(resp => {
-          resp.data.types.map(({ type }: any) => {
-            api.get(type.url).then(res => {
-              const elem = res.data;
+    // api.get("/pokemon").then((response) => {
+    //   response.data.results.map((item: any) => {
+    //     api.get(item.url).then((resp) => {
+    //       resp.data.types.map(({ type }: any) => {
+    //         api.get(type.url).then((res) => {
+    //           const elem = res.data;
 
-              setFraquezas(elem);
-            })
-          });
-        })
-      });
-    });
+    //           setDetalhes(elem);
+    //         });
+    //       });
+    //     });
+    //   });
+    // });
 
     setModal(true);
     setDetalhes(pokemon);
@@ -151,10 +155,6 @@ export default function Home() {
 
   function handleCloseModal() {
     setModal(false);
-  }
-
-  function handleDrop() {
-    setDrop(true);
   }
 
   useEffect(() => {
@@ -253,7 +253,7 @@ export default function Home() {
                 </div>
 
                 <div className="select-custom">
-                  <button className="btn-select" onClick={handleDrop}>
+                  <button className="btn-select" onClick={() => setDrop(!drop)}>
                     <span>Show:</span>
                     <strong>All</strong>
                   </button>
@@ -275,7 +275,8 @@ export default function Home() {
                           </div>
 
                           <span>
-                            {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                            {type.name.charAt(0).toUpperCase() +
+                              type.name.slice(1)}
                           </span>
                         </button>
                       </li>
@@ -304,7 +305,7 @@ export default function Home() {
                 </div>
 
                 <div className="select-custom">
-                  <button className="btn-select" onClick={handleDrop}>
+                  <button className="btn-select" onClick={() => setDrop(!drop)}>
                     <span>Show:</span>
                     <strong>All</strong>
                   </button>
@@ -326,7 +327,8 @@ export default function Home() {
                           </div>
 
                           <span>
-                            {type.name.charAt(0).toUpperCase() + type.name.slice(1)}
+                            {type.name.charAt(0).toUpperCase() +
+                              type.name.slice(1)}
                           </span>
                         </button>
                       </li>

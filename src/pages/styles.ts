@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const SectionPokemons = styled.section`
   padding-bottom: 8.8rem;
   overflow: hidden;
