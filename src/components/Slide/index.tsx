@@ -54,6 +54,8 @@ export function Slide() {
                     <Image
                       src={pokeballRed}
                       className="poke"
+                      width={798}
+                      height={559}
                       title="pokeball"
                       alt="pokeball"
                     />
@@ -98,6 +100,8 @@ export function Slide() {
                   <div className="poke">
                     <Image
                       src={pokeballBlue}
+                      width={798}
+                      height={559}
                       className="poke"
                       title="pokeball"
                       alt="pokeball"

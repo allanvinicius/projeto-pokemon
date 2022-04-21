@@ -80,6 +80,8 @@ export default function Home({ isOpen }: SelectProps) {
 
     setResults(false);
 
+    setText("");
+
     setCount(response.data.pokemon.length);
 
     setPokemons(resultado);
@@ -97,6 +99,8 @@ export default function Home({ isOpen }: SelectProps) {
     for (let i = 0; i < response.data.results.length; i++) {
       resultado.push(results[i].data);
     }
+
+    setText("");
 
     setResults(false);
 
@@ -155,6 +159,14 @@ export default function Home({ isOpen }: SelectProps) {
 
   function handleCloseModal() {
     setModal(false);
+  }
+
+  function handleDrop() {
+    setDrop(!drop);
+
+    if (drop) {
+      window.removeEventListener("click", handleDrop);
+    }
   }
 
   useEffect(() => {
@@ -252,13 +264,26 @@ export default function Home({ isOpen }: SelectProps) {
                   <span>{count} Pokémons</span>
                 </div>
 
-                <div className="select-custom">
-                  <button className="btn-select" onClick={() => setDrop(!drop)}>
+                <div className={`select-custom ${drop ? "active" : ""}`}>
+                  <button className="btn-select" onClick={handleDrop}>
                     <span>Show:</span>
                     <strong>All</strong>
                   </button>
 
                   <ul className="drop-types">
+                    <li>
+                      <button
+                        onClick={() => handleAllPokemons()}
+                        className="all"
+                      >
+                        <div className="icone">
+                          <Image src={iconeAll} alt="icone" />
+                        </div>
+
+                        <span>All</span>
+                      </button>
+                    </li>
+
                     {types.map((type: any, index) => (
                       <li key={index}>
                         <button
@@ -304,13 +329,26 @@ export default function Home({ isOpen }: SelectProps) {
                   <span>1 Pokémon</span>
                 </div>
 
-                <div className="select-custom">
+                <div className={`select-custom ${drop ? "active" : ""}`}>
                   <button className="btn-select" onClick={() => setDrop(!drop)}>
                     <span>Show:</span>
                     <strong>All</strong>
                   </button>
 
                   <ul className="drop-types">
+                    <li>
+                      <button
+                        onClick={() => handleAllPokemons()}
+                        className="all"
+                      >
+                        <div className="icone">
+                          <Image src={iconeAll} alt="icone" />
+                        </div>
+
+                        <span>All</span>
+                      </button>
+                    </li>
+
                     {types.map((type: any, index) => (
                       <li key={index}>
                         <button

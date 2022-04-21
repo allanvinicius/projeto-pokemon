@@ -30,7 +30,6 @@ export const SectionSearch = styled.section`
   }
 
   .search {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;

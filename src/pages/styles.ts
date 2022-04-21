@@ -206,26 +206,38 @@ export const SectionPokemons = styled.section`
       margin-top: 3.2rem;
       margin-bottom: 4rem;
 
+      &.active {
+        .btn-select {
+          border-radius: 0.5rem 0.5rem 0 0;
+        }
+
+        .drop-types {
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+
       .btn-select {
         width: 100%;
         height: 5.6rem;
-        border: 1px solid #A0AFBA;
+        border: 1px solid #a0afba;
         border-radius: 1rem;
 
         display: flex;
         align-items: center;
         padding: 0 2.2rem;
-        background: url('/assets/arrow-down-select.svg') no-repeat right 21px center;
+        background: url("/assets/arrow-down-select.svg") no-repeat right 21px
+          center;
 
         span {
-          color: #7A7D80;
+          color: #7a7d80;
           opacity: 0.6;
           margin-right: 0.4rem;
           font-weight: 500;
         }
 
         strong {
-          color: #7A7D80;
+          color: #7a7d80;
           font-weight: 600;
         }
       }
@@ -239,18 +251,34 @@ export const SectionPokemons = styled.section`
         width: 100%;
         overflow-y: auto;
         height: 22.3rem;
-        border: 1px solid #A0AFBA;
+        border: 1px solid #a0afba;
         border-top: 0;
         padding: 2.1rem;
-        background-color: #FFF;
+        background-color: #fff;
         border-radius: 0 0 0.5rem 0.5rem;
-        z-index: 2;
+        z-index: 3;
+        transition: all 0.3s ease;
 
         li {
           margin-bottom: 2rem;
 
           &:last-child {
             margin-bottom: 0;
+          }
+
+          .all {
+            display: flex;
+
+            .icone {
+              margin-right: 2rem;
+            }
+
+            span {
+              font-size: 1.5rem;
+              font-weight: 600;
+              line-height: 2.2rem;
+              color: #3e75c3;
+            }
           }
 
           .btn-type {
@@ -265,108 +293,162 @@ export const SectionPokemons = styled.section`
             &.normal {
               span {
                 color: #a0a29f;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.fighting {
               span {
                 color: #c44d61;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.flying {
               span {
                 color: #a6bbe8;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.poison {
               span {
                 color: #ac6aca;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.ground {
               span {
                 color: #ce8056;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.rock {
               span {
                 color: #8bcec1;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.bug {
               span {
                 color: #9bba48;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.ghost {
               span {
                 color: #616eb7;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.steel {
               span {
                 color: #6594a1;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.fire {
               span {
                 color: #f66d6d;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.water {
               span {
                 color: #88a3d4;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.grass {
               span {
                 color: #73b861;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.electric {
               span {
                 color: #eed967;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.psychic {
               span {
                 color: #eb8b85;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.ice {
               span {
                 color: #8bcec1;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.dragon {
               span {
                 color: #2c6ac1;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.dark {
               span {
                 color: #595761;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
 
             &.fairy {
               span {
                 color: #e296e1;
+                font-size: 1.5rem;
+                font-weight: 600;
+                line-height: 2.2rem;
               }
             }
           }
@@ -411,13 +493,13 @@ export const SectionPokemons = styled.section`
     }
   }
 
-  @media(max-width: 1200px) {
+  @media (max-width: 1200px) {
     .list-types {
       max-width: 19rem;
     }
   }
 
-  @media(max-width: 1050px) {
+  @media (max-width: 1050px) {
     .list-types {
       max-width: 16rem;
     }
@@ -432,7 +514,7 @@ export const SectionPokemons = styled.section`
     }
   }
 
-  @media(max-width: 990px) {
+  @media (max-width: 990px) {
     .list-types {
       display: none;
     }
@@ -451,7 +533,7 @@ export const SectionPokemons = styled.section`
     }
   }
 
-  @media(max-width: 600px) {
+  @media (max-width: 600px) {
     padding-bottom: 4rem;
 
     .list-pokemons {

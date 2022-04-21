@@ -24,6 +24,11 @@ export function Search({ value, onChange, handleClick }: SearchProps) {
             onChange={handleChange}
             value={value}
             placeholder="Search name or code"
+            // onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
+            //   if (event.key === "Enter") {
+            //     onChange
+            //   }
+            // }}
           />
 
           <button
