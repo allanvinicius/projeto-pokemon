@@ -15,14 +15,18 @@ interface ModalProps {
     height: number;
     weight: number;
     types: any;
-    weakness: Array<any>;
     pokemons: any;
   };
 
-  // weakness: any;
+  weakness: any;
 }
 
-export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
+export function Modal({
+  isOpen,
+  onRequestClose,
+  pokemon,
+  weakness,
+}: ModalProps) {
   useEffect(() => {
     if (typeof window !== undefined) {
       const html = document.querySelector("html");
@@ -74,8 +78,8 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
               {pokemon.id < 10
                 ? "#00" + pokemon.id
                 : pokemon.id < 100
-                  ? "#0" + pokemon.id
-                  : "#" + pokemon.id}
+                ? "#0" + pokemon.id
+                : "#" + pokemon.id}
             </span>
           </div>
 
@@ -121,13 +125,58 @@ export function Modal({ isOpen, onRequestClose, pokemon }: ModalProps) {
             <strong>Weaknesses</strong>
 
             <ul>
-              {/* {pokemon.weakness && pokemon.weakness.map((item, index) => (
-                <li key={index}>
-                  <small className={`tag ${pokemon.types[0].type.name}`}>
-                    {item.damage_relations_double_damage_from[0].name}
-                  </small>
-                </li>
-              ))} */}
+              {weakness && (
+                <>
+                  <li>
+                    {weakness.length > 1 && (
+                      <small className={`tag ${weakness[0]}`}>
+                        {weakness[0]}
+                      </small>
+                    )}
+                  </li>
+
+                  <li>
+                    {weakness.length > 2 && (
+                      <small className={`tag ${weakness[1]}`}>
+                        {weakness[1]}
+                      </small>
+                    )}
+                  </li>
+
+                  <li>
+                    {weakness.length > 3 && (
+                      <small className={`tag ${weakness[2]}`}>
+                        {weakness[2]}
+                      </small>
+                    )}
+                  </li>
+
+                  <li>
+                    {weakness.length > 4 && (
+                      <small className={`tag ${weakness[3]}`}>
+                        {weakness[3]}
+                      </small>
+                    )}
+                  </li>
+
+                  <li>
+                    {weakness.length > 5 && (
+                      <small className={`tag ${weakness[4]}`}>
+                        {weakness[4]}
+                      </small>
+                    )}
+                  </li>
+                </>
+              )}
+
+              {/* {weakness &&
+                weakness.map((item: any, index: number) => (
+                  <li key={index}>
+                    <small className={`tag ${weakness[0]}`}>
+                      {item}
+                    </small>
+                  </li>
+                ))} */}
             </ul>
           </div>
 

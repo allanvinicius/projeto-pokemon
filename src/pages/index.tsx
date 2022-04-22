@@ -22,7 +22,6 @@ interface PokemonProps {
     height: number;
     weight: number;
     types: any;
-    damage_relations: any;
     pokemons: any;
   };
 }
@@ -47,11 +46,7 @@ interface TypesProps {
   ];
 }
 
-interface SelectProps {
-  isOpen: boolean;
-}
-
-export default function Home({ isOpen }: SelectProps) {
+export default function Home() {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<any>([]);
   const [types, setTypes] = useState<TypesProps[]>([]);
@@ -63,8 +58,7 @@ export default function Home({ isOpen }: SelectProps) {
   const [detalhes, setDetalhes] = useState<any>();
   const [results, setResults] = useState(false);
   const [drop, setDrop] = useState(false);
-
-  const [fraquezas, setFraquezas] = useState<any>([]);
+  const [weakness, setWeakness] = useState<any>([]);
 
   async function handleTypes(name: any) {
     const resultado: any = [];
@@ -139,19 +133,23 @@ export default function Home({ isOpen }: SelectProps) {
   function handleOpenModal(id: number) {
     const pokemon = pokemons.find((poke: any) => poke.id === id);
 
-    // api.get("/pokemon").then((response) => {
-    //   response.data.results.map((item: any) => {
-    //     api.get(item.url).then((resp) => {
-    //       resp.data.types.map(({ type }: any) => {
-    //         api.get(type.url).then((res) => {
-    //           const elem = res.data;
+    api.get("/pokemon").then((response) => {
+      response.data.results.map((item: any) => {
+        api.get(item.url).then((resp) => {
+          resp.data.types.map(({ type }: any) => {
+            api.get(type.url).then((res) => {
+              const { damage_relations } = res.data;
 
-    //           setDetalhes(elem);
-    //         });
-    //       });
-    //     });
-    //   });
-    // });
+              const result = damage_relations.double_damage_from.map(
+                (item: any) => item.name
+              );
+
+              setWeakness(result);
+            });
+          });
+        });
+      });
+    });
 
     setModal(true);
     setDetalhes(pokemon);
@@ -396,6 +394,7 @@ export default function Home({ isOpen }: SelectProps) {
               key={detalhes}
               isOpen={modal}
               pokemon={detalhes}
+              weakness={weakness}
               onRequestClose={handleCloseModal}
             />
           )}
