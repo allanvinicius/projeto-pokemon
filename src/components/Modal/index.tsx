@@ -125,58 +125,48 @@ export function Modal({
             <strong>Weaknesses</strong>
 
             <ul>
-              {weakness && (
-                <>
-                  <li>
-                    {weakness.length > 1 && (
-                      <small className={`tag ${weakness[0]}`}>
-                        {weakness[0]}
-                      </small>
-                    )}
-                  </li>
+              <li>
+                <small className={`tag ${weakness[0]}`}>
+                  {String(weakness[0]).charAt(0).toUpperCase() +
+                    String(weakness[0]).slice(1)}
+                </small>
+              </li>
 
-                  <li>
-                    {weakness.length > 2 && (
-                      <small className={`tag ${weakness[1]}`}>
-                        {weakness[1]}
-                      </small>
-                    )}
-                  </li>
+              <li>
+                {weakness.length > 1 && (
+                  <small className={`tag ${weakness[1]}`}>
+                    {String(weakness[1]).charAt(0).toUpperCase() +
+                      String(weakness[1]).slice(1)}
+                  </small>
+                )}
+              </li>
 
-                  <li>
-                    {weakness.length > 3 && (
-                      <small className={`tag ${weakness[2]}`}>
-                        {weakness[2]}
-                      </small>
-                    )}
-                  </li>
+              <li>
+                {weakness.length > 2 && (
+                  <small className={`tag ${weakness[2]}`}>
+                    {String(weakness[2]).charAt(0).toUpperCase() +
+                      String(weakness[2]).slice(1)}
+                  </small>
+                )}
+              </li>
 
-                  <li>
-                    {weakness.length > 4 && (
-                      <small className={`tag ${weakness[3]}`}>
-                        {weakness[3]}
-                      </small>
-                    )}
-                  </li>
+              <li>
+                {weakness.length > 3 && (
+                  <small className={`tag ${weakness[3]}`}>
+                    {String(weakness[3]).charAt(0).toUpperCase() +
+                      String(weakness[3]).slice(1)}
+                  </small>
+                )}
+              </li>
 
-                  <li>
-                    {weakness.length > 5 && (
-                      <small className={`tag ${weakness[4]}`}>
-                        {weakness[4]}
-                      </small>
-                    )}
-                  </li>
-                </>
-              )}
-
-              {/* {weakness &&
-                weakness.map((item: any, index: number) => (
-                  <li key={index}>
-                    <small className={`tag ${weakness[0]}`}>
-                      {item}
-                    </small>
-                  </li>
-                ))} */}
+              <li>
+                {weakness.length > 4 && (
+                  <small className={`tag ${weakness[4]}`}>
+                    {String(weakness[4]).charAt(0).toUpperCase() +
+                      String(weakness[4]).slice(1)}
+                  </small>
+                )}
+              </li>
             </ul>
           </div>
 

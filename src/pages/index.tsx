@@ -72,9 +72,15 @@ export default function Home() {
       resultado.push(types[i].data);
     }
 
-    setResults(false);
+    // if (response.data.pokemon.length > 9) {
+    //   setResults(true);
+    // }
 
     setText("");
+
+    setResults(false);
+
+    setDrop(!drop);
 
     setCount(response.data.pokemon.length);
 
@@ -95,6 +101,8 @@ export default function Home() {
     }
 
     setText("");
+
+    setDrop(!drop);
 
     setResults(false);
 
@@ -133,21 +141,17 @@ export default function Home() {
   function handleOpenModal(id: number) {
     const pokemon = pokemons.find((poke: any) => poke.id === id);
 
-    api.get("/pokemon").then((response) => {
-      response.data.results.map((item: any) => {
-        api.get(item.url).then((resp) => {
-          resp.data.types.map(({ type }: any) => {
-            api.get(type.url).then((res) => {
-              const { damage_relations } = res.data;
+    api.get(`/pokemon/${id}`).then((response) => {
+      const resposta = response.data.types[0].type.url;
 
-              const result = damage_relations.double_damage_from.map(
-                (item: any) => item.name
-              );
+      api.get(resposta).then((res) => {
+        const { damage_relations } = res.data;
 
-              setWeakness(result);
-            });
-          });
-        });
+        const result = damage_relations.double_damage_from.map(
+          ({ name }: any) => name
+        );
+
+        setWeakness(result);
       });
     });
 
