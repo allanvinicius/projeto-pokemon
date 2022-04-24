@@ -53,16 +53,15 @@ export default function Home() {
   const [text, setText] = useState("");
   const [search, setSearch] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [loadmore, setLoadmore] = useState<PokemonProps[]>([]);
   const [modal, setModal] = useState(false);
-  const [detalhes, setDetalhes] = useState<any>();
+  const [details, setDetails] = useState<any>();
   const [results, setResults] = useState(false);
   const [drop, setDrop] = useState(false);
   const [weakness, setWeakness] = useState<any>([]);
 
-  async function handleTypes(name: any) {
+  async function handleTypes(typeId: any) {
     const resultado: any = [];
-    const response = await api.get(name);
+    const response = await api.get(typeId);
 
     const types: any = await Promise.all(
       response.data.pokemon.map((pokemon: any) => api.get(pokemon.pokemon.url))
@@ -156,7 +155,7 @@ export default function Home() {
     });
 
     setModal(true);
-    setDetalhes(pokemon);
+    setDetails(pokemon);
   }
 
   function handleCloseModal() {
@@ -395,9 +394,9 @@ export default function Home() {
 
           {modal && (
             <Modal
-              key={detalhes}
+              key={details}
               isOpen={modal}
-              pokemon={detalhes}
+              pokemon={details}
               weakness={weakness}
               onRequestClose={handleCloseModal}
             />

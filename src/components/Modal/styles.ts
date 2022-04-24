@@ -559,7 +559,7 @@ export const BoxModal = styled.div<Props>`
     .box {
       max-width: 52rem;
       flex-direction: column;
-      height: 86%;
+      height: 73%;
 
       .left {
         max-width: 100%;
@@ -681,6 +681,13 @@ export const BoxModal = styled.div<Props>`
           align-items: center;
           justify-content: center;
           flex-direction: column;
+
+          ul {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1rem;
+            row-gap: 1.6rem;
+          }
         }
 
         .info-stats {
