@@ -46,7 +46,7 @@ interface TypesProps {
   ];
 }
 
-export default function Home() {
+function Home() {
   const [count, setCount] = useState(0);
   const [pokemons, setPokemons] = useState<any>([]);
   const [types, setTypes] = useState<TypesProps[]>([]);
@@ -408,3 +408,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;
