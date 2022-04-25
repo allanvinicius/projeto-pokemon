@@ -165,10 +165,6 @@ function Home() {
 
   function handleDrop() {
     setDrop(!drop);
-
-    if (drop) {
-      setDrop(drop);
-    }
   }
 
   useEffect(() => {
@@ -332,7 +328,7 @@ function Home() {
                 </div>
 
                 <div className={`select-custom ${drop ? "active" : ""}`}>
-                  <button className="btn-select" onClick={() => setDrop(!drop)}>
+                  <button className="btn-select" onClick={handleDrop}>
                     <span>Show:</span>
                     <strong>All</strong>
                   </button>

@@ -304,6 +304,7 @@ export const SectionPokemons = styled.section`
       align-items: center;
 
       span {
+        font-family: "Montserrat";
         font-weight: 600;
         font-size: 1.8rem;
         line-height: 2.7rem;
