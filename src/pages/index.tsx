@@ -166,7 +166,7 @@ export default function Home() {
     setDrop(!drop);
 
     if (drop) {
-      window.removeEventListener("click", handleDrop);
+      setDrop(drop);
     }
   }
 

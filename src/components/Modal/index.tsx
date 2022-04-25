@@ -21,21 +21,7 @@ interface ModalProps {
   weakness: any;
 }
 
-export function Modal({
-  isOpen,
-  onRequestClose,
-  pokemon,
-  weakness,
-}: ModalProps) {
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      const html = document.querySelector("html");
-      if (html) {
-        html.style.display = isOpen ? "initial" : "none";
-      }
-    }
-  }, [isOpen]);
-
+export function Modal({ isOpen, onRequestClose, pokemon, weakness}: ModalProps) {
   return (
     <BoxModal isOpen={isOpen}>
       <div className="overlay"></div>
@@ -78,8 +64,8 @@ export function Modal({
               {pokemon.id < 10
                 ? "#00" + pokemon.id
                 : pokemon.id < 100
-                ? "#0" + pokemon.id
-                : "#" + pokemon.id}
+                  ? "#0" + pokemon.id
+                  : "#" + pokemon.id}
             </span>
           </div>
 

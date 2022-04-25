@@ -559,7 +559,7 @@ export const BoxModal = styled.div<Props>`
     .box {
       max-width: 52rem;
       flex-direction: column;
-      height: 73%;
+      height: 86%;
 
       .left {
         max-width: 100%;
