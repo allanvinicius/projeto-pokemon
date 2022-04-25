@@ -50,6 +50,119 @@ export const SectionPokemons = styled.section`
           opacity: 0.6;
           transition: all 0.3s ease;
 
+          &.active {
+            opacity: 1;
+            filter: grayscale(0);
+
+            &.normal {
+              span {
+                color: #a0a29f;
+              }
+            }
+
+            &.fighting {
+              span {
+                color: #c44d61;
+              }
+            }
+
+            &.flying {
+              span {
+                color: #a6bbe8;
+              }
+            }
+
+            &.poison {
+              span {
+                color: #ac6aca;
+              }
+            }
+
+            &.ground {
+              span {
+                color: #ce8056;
+              }
+            }
+
+            &.rock {
+              span {
+                color: #8bcec1;
+              }
+            }
+
+            &.bug {
+              span {
+                color: #9bba48;
+              }
+            }
+
+            &.ghost {
+              span {
+                color: #616eb7;
+              }
+            }
+
+            &.steel {
+              span {
+                color: #6594a1;
+              }
+            }
+
+            &.fire {
+              span {
+                color: #f66d6d;
+              }
+            }
+
+            &.water {
+              span {
+                color: #88a3d4;
+              }
+            }
+
+            &.grass {
+              span {
+                color: #73b861;
+              }
+            }
+
+            &.electric {
+              span {
+                color: #eed967;
+              }
+            }
+
+            &.psychic {
+              span {
+                color: #eb8b85;
+              }
+            }
+
+            &.ice {
+              span {
+                color: #8bcec1;
+              }
+            }
+
+            &.dragon {
+              span {
+                color: #2c6ac1;
+              }
+            }
+
+            &.dark {
+              span {
+                color: #595761;
+              }
+            }
+
+            &.fairy {
+              span {
+                color: #e296e1;
+              }
+            }
+          }
+
           &:hover {
             filter: grayscale(0);
             opacity: 1;

@@ -58,6 +58,7 @@ export default function Home() {
   const [results, setResults] = useState(false);
   const [drop, setDrop] = useState(false);
   const [weakness, setWeakness] = useState<any>([]);
+  const [click, setClick] = useState(false);
 
   async function handleTypes(typeId: any) {
     const resultado: any = [];
@@ -115,8 +116,9 @@ export default function Home() {
   function handleSearch() {
     api.get(`pokemon/${text.toLocaleLowerCase()}`).then((response) => {
       setSearch(response.data);
-      setResults(true);
     });
+
+    setResults(true);
   }
 
   async function handleLoadMore() {
@@ -236,7 +238,7 @@ export default function Home() {
                 types.map((type, index) => (
                   <li key={index}>
                     <button
-                      className={`btn-type ${type.name}`}
+                      className={`btn-type ${type.name} ${click ? "active" : " "}`}
                       onClick={() => handleTypes(`/type/${index + 1}`)}
                     >
                       <div className="icone">
