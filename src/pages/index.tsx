@@ -7,7 +7,7 @@ import iconeAll from "../../public/assets/icone-all.svg";
 
 import { Search } from "../components/Search";
 import React, { useEffect, useState } from "react";
-import api  from "./services/api";
+import api from "./services/api";
 import { CardPokemon } from "../components/CardPokemon";
 import { Modal } from "../components/Modal";
 import { Slide } from "../components/Slide";
@@ -58,6 +58,7 @@ function Home() {
   const [results, setResults] = useState(false);
   const [drop, setDrop] = useState(false);
   const [weakness, setWeakness] = useState<any>([]);
+  const [typeName, setTypeName] = useState<string>("All");
 
   async function handleTypes(typeId: any) {
     const resultado: any = [];
@@ -117,6 +118,8 @@ function Home() {
       setSearch(response.data);
 
       setResults(true);
+
+      setTypeName("All");
     });
   }
 
@@ -265,13 +268,17 @@ function Home() {
                 <div className={`select-custom ${drop ? "active" : ""}`}>
                   <button className="btn-select" onClick={handleDrop}>
                     <span>Show:</span>
-                    <strong>All</strong>
+                    <strong>
+                      {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+                    </strong>
                   </button>
 
                   <ul className="drop-types">
                     <li>
                       <button
-                        onClick={() => handleAllPokemons()}
+                        onClick={() => {
+                          handleAllPokemons(), setTypeName("All");
+                        }}
                         className="all"
                       >
                         <div className="icone">
@@ -286,7 +293,10 @@ function Home() {
                       <li key={index}>
                         <button
                           className={`btn-type ${type.name}`}
-                          onClick={() => handleTypes(`/type/${index + 1}`)}
+                          onClick={() => {
+                            handleTypes(`/type/${index + 1}`),
+                              setTypeName(type.name);
+                          }}
                         >
                           <div className="icone">
                             <Image
@@ -330,13 +340,17 @@ function Home() {
                 <div className={`select-custom ${drop ? "active" : ""}`}>
                   <button className="btn-select" onClick={handleDrop}>
                     <span>Show:</span>
-                    <strong>All</strong>
+                    <strong>
+                      {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+                    </strong>
                   </button>
 
                   <ul className="drop-types">
                     <li>
                       <button
-                        onClick={() => handleAllPokemons()}
+                        onClick={() => {
+                          handleAllPokemons(), setTypeName("All");
+                        }}
                         className="all"
                       >
                         <div className="icone">
@@ -351,7 +365,10 @@ function Home() {
                       <li key={index}>
                         <button
                           className={`btn-type ${type.name}`}
-                          onClick={() => handleTypes(`/type/${index + 1}`)}
+                          onClick={() => {
+                            handleTypes(`/type/${index + 1}`),
+                              setTypeName(type.name);
+                          }}
                         >
                           <div className="icone">
                             <Image
