@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { SectionPokemons } from "./styles";
+import { GetStaticProps } from "next";
 
 import icone from "../../public/assets/icone-pokeball.svg";
 import iconeAll from "../../public/assets/icone-all.svg";
@@ -48,7 +49,7 @@ interface TypesProps {
 
 function Home() {
   const [count, setCount] = useState(0);
-  const [pokemons, setPokemons] = useState<any>([]);
+  const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
   const [types, setTypes] = useState<TypesProps[]>([]);
   const [text, setText] = useState("");
   const [search, setSearch] = useState<any>([]);
@@ -420,5 +421,33 @@ function Home() {
     </>
   );
 }
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const resultadoPokemon: any = [];
+//   const resultadoTypes: any = [];
+//   const count = await api.get("/pokemon");
+//   const numberPoke = await count.data;
+
+//   const list = await api.get('pokemon?offset=0&limit=9');
+//   const listPoke = await list.data.results.map((item: any) =>
+//     api.get(item.url).then((resp) => {
+//       resultadoPokemon.push(resp.data);
+//     }));
+
+//   const types = await api.get('/type');
+//   const listTypes = await types.data.then((resp: any) => {
+//     if (resp.data.name != "shadow" && resp.data.name != "unknown") {
+//       resultadoTypes.push(resp.data);
+//     }
+//   });
+
+//   return {
+//     props: {
+//       numberPoke,
+//       listPoke,
+//       listTypes,
+//     }
+//   }
+// }
 
 export default Home;

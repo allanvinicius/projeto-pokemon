@@ -44,7 +44,7 @@ export function Modal({ isOpen, onRequestClose, pokemon, weakness}: ModalProps) 
           <div className="pokemon">
             {pokemon.sprites.other.dream_world.front_default && (
               <Image
-                src={pokemon.sprites.other.dream_world.front_default}
+                src={pokemon.sprites.other.dream_world.front_default || pokemon.sprites.home.front_default}
                 alt="image"
                 width={202}
                 height={202}
