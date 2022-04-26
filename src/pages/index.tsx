@@ -422,32 +422,4 @@ function Home() {
   );
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const resultadoPokemon: any = [];
-//   const resultadoTypes: any = [];
-//   const count = await api.get("/pokemon");
-//   const numberPoke = await count.data;
-
-//   const list = await api.get('pokemon?offset=0&limit=9');
-//   const listPoke = await list.data.results.map((item: any) =>
-//     api.get(item.url).then((resp) => {
-//       resultadoPokemon.push(resp.data);
-//     }));
-
-//   const types = await api.get('/type');
-//   const listTypes = await types.data.then((resp: any) => {
-//     if (resp.data.name != "shadow" && resp.data.name != "unknown") {
-//       resultadoTypes.push(resp.data);
-//     }
-//   });
-
-//   return {
-//     props: {
-//       numberPoke,
-//       listPoke,
-//       listTypes,
-//     }
-//   }
-// }
-
 export default Home;
