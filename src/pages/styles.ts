@@ -20,6 +20,21 @@ export const SectionPokemons = styled.section`
       display: flex;
       align-items: center;
       margin-bottom: 4rem;
+      /* filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s ease; */
+
+      &.active {
+        opacity: 1;
+        filter: grayscale(0);
+
+        span {
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 2.2rem;
+          color: #3e75c3;
+        }
+      }
 
       .icone {
         margin-right: 2.5rem;

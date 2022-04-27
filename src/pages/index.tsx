@@ -60,58 +60,58 @@ function Home() {
   const [drop, setDrop] = useState(false);
   const [weakness, setWeakness] = useState<any>([]);
   const [typeName, setTypeName] = useState<string>("All");
+  //const [click, setClick] = useState(false);
 
-  async function handleTypes(typeId: any) {
+  function handleTypes(typeId: any) {
     const resultado: any = [];
-    const response = await api.get(typeId);
 
-    const types: any = await Promise.all(
-      response.data.pokemon.map((pokemon: any) => api.get(pokemon.pokemon.url))
-    );
+    api.get(typeId).then(response => {
+      response.data.pokemon.map((pokemon: any) => {
+        api.get(pokemon.pokemon.url).then(resp => {
+          const elem = resp.data;
 
-    for (let i = 0; i < response.data.pokemon.length; i++) {
-      resultado.push(types[i].data);
-    }
+          resultado.push(elem);
 
-    // if (response.data.pokemon.length > 9) {
-    //   setResults(true);
-    // }
+          setTimeout(() => {
+            setPokemons(resultado);
+          }, 0.1 * 1000);
+        })
+
+        setCount(response.data.pokemon.length);
+      })
+    });
 
     setText("");
 
     setResults(false);
 
     setDrop(!drop);
-
-    setCount(response.data.pokemon.length);
-
-    setPokemons(resultado);
   }
 
-  async function handleAllPokemons() {
+  function handleAllPokemons() {
     const resultado: any = [];
 
-    const response = await api.get(`pokemon?limit=${currentPage}&offset=0`);
+    api.get(`pokemon?limit=9&offset=0`).then(response => {
+      response.data.results.map((pokemons: any) => {
+        api.get(pokemons.url).then(resp => {
+          const elem = resp.data;
 
-    const results: any = await Promise.all(
-      response.data.results.map((pokemons: any) => api.get(pokemons.url))
-    );
+          resultado.push(elem);
 
-    for (let i = 0; i < response.data.results.length; i++) {
-      resultado.push(results[i].data);
-    }
+          setTimeout(() => {
+            setPokemons(resultado);
+          }, 0.1 * 1000);
+        });
+
+        setCount(response.data.count);
+      })
+    });
 
     setText("");
 
     setDrop(!drop);
 
     setResults(false);
-
-    setCount(response.data.count);
-
-    setCurrentPage(currentPage + 9);
-
-    setPokemons(resultado);
   }
 
   function handleSearch() {
@@ -124,22 +124,24 @@ function Home() {
     });
   }
 
-  async function handleLoadMore() {
+  function handleLoadMore() {
     const listPokemons: any = [];
 
-    const response = await api.get(`pokemon?offset=0&limit=${currentPage}`);
+    api.get(`pokemon?offset=0&limit=${currentPage}`).then(response => {
+      response.data.results.map((item: any) => {
+        api.get(item.url).then(resp => {
+          const elem = resp.data;
 
-    const resultado: any = await Promise.all(
-      response.data.results.map((item: any) => api.get(item.url))
-    );
+          listPokemons.push(elem);
 
-    for (let i = 0; i < response.data.results.length; i++) {
-      listPokemons.push(resultado[i].data);
-    }
+          setTimeout(() => {
+            setPokemons(listPokemons);
+          }, 0.1 * 1000);
+        })
+      });
 
-    setCurrentPage(currentPage + 9);
-
-    setPokemons(listPokemons);
+      setCurrentPage(currentPage + 9);
+    })
   }
 
   function handleOpenModal(id: number) {
