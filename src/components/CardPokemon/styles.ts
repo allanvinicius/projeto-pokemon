@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`
 
 export const Card = styled.div`
   .btn-pokemon {
@@ -8,7 +19,8 @@ export const Card = styled.div`
     box-shadow: 0px 10px 51px -5px rgba(183, 189, 193, 0.3);
     background-color: #ffffff;
     border-radius: 12px;
-    transition: all 0.3s ease;
+    animation: ${fadeIn} .3s forwards;
+    transition: all 0.5s ease;
 
     &.normal {
       .image {

@@ -60,7 +60,7 @@ function Home() {
   const [drop, setDrop] = useState(false);
   const [weakness, setWeakness] = useState<any>([]);
   const [typeName, setTypeName] = useState<string>("All");
-  //const [click, setClick] = useState(false);
+  const [name, setName] = useState(false);
 
   function handleTypes(typeId: any) {
     const resultado: any = [];
@@ -76,9 +76,8 @@ function Home() {
             setPokemons(resultado);
           }, 0.1 * 1000);
         })
-
-        setCount(response.data.pokemon.length);
-      })
+      });
+      setCount(response.data.pokemon.length);
     });
 
     setText("");
@@ -102,9 +101,9 @@ function Home() {
             setPokemons(resultado);
           }, 0.1 * 1000);
         });
-
-        setCount(response.data.count);
       })
+
+      setCount(response.data.count);
     });
 
     setText("");
@@ -236,11 +235,11 @@ function Home() {
 
             <ul>
               {types &&
-                types.map((type, index) => (
+                types.map((type: any, index: number) => (
                   <li key={index}>
                     <button
-                      className={`btn-type ${type.name}`}
-                      onClick={() => handleTypes(`/type/${index + 1}`)}
+                      className={`btn-type ${type.name} ${type.name === name ? "active" : ""}`}
+                      onClick={() => { handleTypes(`/type/${index + 1}`), setName(!name) }}
                     >
                       <div className="icone">
                         <Image

@@ -1,8 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 interface Props {
   isOpen: boolean;
 }
+
+export const modalAnimation = keyframes`
+  0%{
+    transform: translateY(5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
 
 export const BoxModal = styled.div<Props>`
   position: fixed;
@@ -15,7 +24,7 @@ export const BoxModal = styled.div<Props>`
   align-items: center;
   justify-content: center;
   pointer-events: ${(props) => (props.isOpen ? "all" : "none")};
-
+  
   .overlay {
     position: fixed;
     top: 0;
@@ -31,8 +40,8 @@ export const BoxModal = styled.div<Props>`
     position: relative;
     background-color: #ffffff;
     box-shadow: 0px 10px 40px rgba(13, 12, 71, 0.05);
-    visibility: ${(props) => (props.isOpen ? "initial" : "hidden")};
     pointer-events: ${(props) => (props.isOpen ? "all" : "none")};
+    animation: ${modalAnimation} .3s forwards;
     border-radius: 16px;
     top: 0;
     left: 0;
@@ -42,6 +51,7 @@ export const BoxModal = styled.div<Props>`
     z-index: 2022;
     display: flex;
     align-items: flex-start;
+    transition: all .3s ease;
 
     .btn-close {
       position: absolute;
