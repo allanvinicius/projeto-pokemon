@@ -27,6 +27,7 @@ export const SectionPokemons = styled.section`
       &:hover {
         opacity: 1;
         filter: grayscale(0);
+        transition: all .3s ease;
 
         span {
           color: #3e75c3;
@@ -36,6 +37,7 @@ export const SectionPokemons = styled.section`
       &.active {
         opacity: 1;
         filter: grayscale(0);
+        transition: all .3s ease;
 
         span {
           font-weight: 600;
@@ -77,6 +79,7 @@ export const SectionPokemons = styled.section`
           &.active {
             opacity: 1;
             filter: grayscale(0);
+            transition: all .3s ease;
 
             &.normal {
               span {

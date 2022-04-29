@@ -60,7 +60,6 @@ function Home() {
   const [drop, setDrop] = useState(false);
   const [weakness, setWeakness] = useState<any>([]);
   const [typeName, setTypeName] = useState<string>("All");
-  const [name, setName] = useState(false);
 
   function handleTypes(typeId: any) {
     const resultado: any = [];
@@ -123,7 +122,7 @@ function Home() {
     });
   }
 
-  function handleLoadMore() {
+  async function handleLoadMore() {
     const listPokemons: any = [];
 
     api.get(`pokemon?offset=0&limit=${currentPage}`).then((response) => {
