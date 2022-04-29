@@ -31,6 +31,15 @@ export const AreaSlide = styled.section`
           background-size: cover;
 
           .texto {
+            .tag {
+              .icon {
+                background-color: rgba(63, 103, 186,0.15);
+              }
+              
+              span {
+                color: #3F67BA;
+              }
+            }
             .image {
               .poke {
                 top: 5% !important;

@@ -15,13 +15,14 @@ import arrow from "../../../public/assets/arrow-down.svg";
 import React from "react";
 import { AreaSlide } from "./styles";
 
-
 export function Slide() {
   return (
     <AreaSlide>
       <Swiper
         navigation={true}
-        pagination={true}
+        pagination={{
+          clickable: true,
+        }}
         autoplay={{
           delay: 4500,
           disableOnInteraction: false,
