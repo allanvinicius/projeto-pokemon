@@ -20,9 +20,18 @@ export const SectionPokemons = styled.section`
       display: flex;
       align-items: center;
       margin-bottom: 4rem;
-      /* filter: grayscale(100%);
+      filter: grayscale(100%);
       opacity: 0.6;
-      transition: all 0.3s ease; */
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+        filter: grayscale(0);
+
+        span {
+          color: #3e75c3;
+        }
+      }
 
       &.active {
         opacity: 1;
@@ -387,6 +396,20 @@ export const SectionPokemons = styled.section`
         border-radius: 0 0 0.5rem 0.5rem;
         z-index: 3;
         transition: all 0.3s ease;
+
+        &::-webkit-scrollbar {
+          width: 5px;
+          background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: #3e75c3;
+          border-radius: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: transparent;
+        }
 
         li {
           margin-bottom: 2rem;

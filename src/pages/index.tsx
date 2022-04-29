@@ -65,9 +65,9 @@ function Home() {
   function handleTypes(typeId: any) {
     const resultado: any = [];
 
-    api.get(typeId).then(response => {
+    api.get(typeId).then((response) => {
       response.data.pokemon.map((pokemon: any) => {
-        api.get(pokemon.pokemon.url).then(resp => {
+        api.get(pokemon.pokemon.url).then((resp) => {
           const elem = resp.data;
 
           resultado.push(elem);
@@ -75,7 +75,7 @@ function Home() {
           setTimeout(() => {
             setPokemons(resultado);
           }, 0.1 * 1000);
-        })
+        });
       });
       setCount(response.data.pokemon.length);
     });
@@ -90,9 +90,9 @@ function Home() {
   function handleAllPokemons() {
     const resultado: any = [];
 
-    api.get(`pokemon?limit=9&offset=0`).then(response => {
+    api.get(`pokemon?limit=9&offset=0`).then((response) => {
       response.data.results.map((pokemons: any) => {
-        api.get(pokemons.url).then(resp => {
+        api.get(pokemons.url).then((resp) => {
           const elem = resp.data;
 
           resultado.push(elem);
@@ -101,7 +101,7 @@ function Home() {
             setPokemons(resultado);
           }, 0.1 * 1000);
         });
-      })
+      });
 
       setCount(response.data.count);
     });
@@ -126,9 +126,9 @@ function Home() {
   function handleLoadMore() {
     const listPokemons: any = [];
 
-    api.get(`pokemon?offset=0&limit=${currentPage}`).then(response => {
+    api.get(`pokemon?offset=0&limit=${currentPage}`).then((response) => {
       response.data.results.map((item: any) => {
-        api.get(item.url).then(resp => {
+        api.get(item.url).then((resp) => {
           const elem = resp.data;
 
           listPokemons.push(elem);
@@ -136,11 +136,11 @@ function Home() {
           setTimeout(() => {
             setPokemons(listPokemons);
           }, 0.1 * 1000);
-        })
+        });
       });
 
       setCurrentPage(currentPage + 9);
-    })
+    });
   }
 
   function handleOpenModal(id: number) {
@@ -211,7 +211,7 @@ function Home() {
   return (
     <>
       <Head>
-        <title>Pokémon</title>
+        <title>Pokémon API</title>
       </Head>
 
       <Slide />
@@ -225,7 +225,10 @@ function Home() {
       <SectionPokemons>
         <div className="container">
           <div className="list-types">
-            <button onClick={() => handleAllPokemons()} className="all">
+            <button
+              onClick={() => {handleAllPokemons(), setTypeName("All")}}
+              className={`all ${typeName === "All" ? "active" : ""}`}
+            >
               <div className="icone">
                 <Image src={iconeAll} alt="icone" />
               </div>
@@ -238,8 +241,13 @@ function Home() {
                 types.map((type: any, index: number) => (
                   <li key={index}>
                     <button
-                      className={`btn-type ${type.name} ${type.name === name ? "active" : ""}`}
-                      onClick={() => { handleTypes(`/type/${index + 1}`), setName(!name) }}
+                      className={`btn-type ${type.name} ${
+                        typeName === type.name ? "active" : ""
+                      }`}
+                      onClick={() => {
+                        handleTypes(`/type/${index + 1}`),
+                          setTypeName(type.name);
+                      }}
                     >
                       <div className="icone">
                         <Image
